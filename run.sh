@@ -8,3 +8,4 @@ go build -o bin/install ./cmd/app
 
 # run
 ./bin/install
+

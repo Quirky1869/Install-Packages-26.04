@@ -1,30 +1,44 @@
 package ui
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
 func (m Model) View() string {
 	switch m.state {
-	case "install", "done":
-		return fmt.Sprintf("%s\n\n%s", m.output, "Appuyez sur q pour quitter.")
-	}
 
-	var b strings.Builder
-	b.WriteString("Sélectionnez les paquets à installer :\n\n")
-	for i, item := range m.items {
-		cursor := "  "
-		if m.cursor == i {
-			cursor = "> "
-		}
-		checked := "[ ]"
-		if m.selected[i] {
-			checked = "[x]"
-		}
-		b.WriteString(fmt.Sprintf("%s%s %s\n", cursor, checked, item))
-	}
+	case "install":
+		return BorderStyle.Render(fmt.Sprintf(
+			"%s\n\n%s\n\n%s",
+			TitleStyle.Render("Installation en cours..."),
+			m.progress.View(),
+			m.output,
+		))
 
-	b.WriteString("\nContrôles: ↑/↓ pour naviguer, espace pour sélectionner, Entrée pour installer, q pour quitter\n")
-	return b.String()
+	case "done":
+		return BorderStyle.Render(fmt.Sprintf(
+			"%s\n\n%s",
+			TitleStyle.Render("Résultat de l’installation"),
+			m.output,
+		))
+
+	default: // "list"
+		s := TitleStyle.Render(m.list.Title) + "\n\n"
+
+		for i, li := range m.list.Items() {
+			it := li.(item)
+			check := "[ ]"
+			if m.selected[it.title] {
+				check = "[x]"
+			}
+
+			cursor := "  " // par défaut, pas de curseur
+			if i == m.list.Index() {
+				cursor = "> "
+			}
+
+			s += fmt.Sprintf("%s%s %s\n", cursor, check, it.title)
+		}
+
+		s += HelpStyle.Render("\n↑/↓ pour naviguer • espace pour sélectionner • Entrée pour installer • q pour quitter")
+		return BorderStyle.Render(s)
+	}
 }
