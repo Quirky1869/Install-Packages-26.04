@@ -6,3 +6,4 @@
 ![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)
 ![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)
 [![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)
+[![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)
