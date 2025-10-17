@@ -10,7 +10,9 @@
 
 ## Résumé
 
-
+Install-Packages 26.04 est un outil simple et interactif pour installer rapidement tes paquets préférés sur Ubuntu 26.04.  
+Grâce à une interface TUI en Go, tu peux choisir les logiciels à installer, suivre la progression en temps réel et automatiser toute la configuration sans te prendre la tête.  
+Aucun besoin de Go ou de scripts compliqués — tout se lance depuis le terminal en une commande.  
 
 ## Fonctionnalités
 
@@ -59,6 +61,9 @@ chmod u+x scripts/* install
 
 ![](./_images/gif/install-packages-26.04-Sakura.gif)  
 
+>[!TIP]  
+> Vous pouvez aussi exécuter le script `run.sh` à la place de taper toutes les commandes ci-dessus 
+
 ## Ajout de scripts
 
 Vous pouvez si vous le souhaitez rajouter vos scripts :
@@ -66,7 +71,7 @@ Vous pouvez si vous le souhaitez rajouter vos scripts :
 - Donner lui les droits d'exécution nécessaire
 - Dans `ui/model.go` ajouter votre nom et l'emplacement de votre script (ex : "Google Chrome":      "scripts/install_chrome.sh")
 - Dans `cmd/app/main.go` ajouté votre nom d'application dans le slice `items`
-- Relancerle `./run.sh` pour recompiler le binaire `bin/install`
+- Relancerle `./build.sh` pour recompiler le binaire `bin/install`
 - Puis suivre la procédure [d'installation](#installation)
 
 ## Astuces
