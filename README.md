@@ -2,11 +2,11 @@
 
 ![](./_images/go.png)  
 
-[![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-E95420?style=plastic&logo=ubuntu)](https://www.ubuntu-fr.org/download/)  
-![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)  
-![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)  
-[![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)  
-[![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)  
+[![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-E95420?style=plastic&logo=ubuntu)](https://www.ubuntu-fr.org/download/)
+![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)
+![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)
+[![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)
+[![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)
 
 ## Résumé
 
@@ -71,7 +71,7 @@ Vous pouvez si vous le souhaitez rajouter vos scripts :
 - Donner lui les droits d'exécution nécessaire
 - Dans `ui/model.go` ajouter votre nom et l'emplacement de votre script (ex : "Google Chrome":      "scripts/install_chrome.sh")
 - Dans `cmd/app/main.go` ajouté votre nom d'application dans le slice `items`
-- Relancerle `./build.sh` pour recompiler le binaire `bin/install`
+- Relancer le `./build.sh` pour recompiler le binaire `bin/install`
 - Puis suivre la procédure [d'installation](#installation)
 
 ## Astuces
