@@ -1,15 +1,11 @@
-Output install-packages-26.04.gif
+Output install-packages-26.04-Sakura.gif
 
-Set FontSize 34
-Set Theme "Neon"
+Set FontSize 30
+Set Theme "Sakura"
 Set WindowBar Colorful
 Set BorderRadius 20
 Set Width 1500
 Set Height 850
-
-Type "git clone https://github.com/Quirky1869/Install-Packages-26.04.git"
-Enter
-Sleep 1s
 
 Type "cd Install-Packages-26.04"
 Enter
