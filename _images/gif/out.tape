@@ -24,5 +24,6 @@ Enter
 Sleep 1s
 
 Type "./install"
+Sleep 2s
 Enter
 Sleep 3s
