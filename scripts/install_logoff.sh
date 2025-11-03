@@ -1,11 +1,22 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/bash
 
-# Script d'installation pour : logoff
-# Remplis ce fichier avec les commandes d'installation pour "logoff"
+# ▄       ▄▄▄▄    ▄▄▄   ▄▄▄▄  ▄▄▄▄▄▄ ▄▄▄▄▄▄
+# █      ▄▀  ▀▄ ▄▀   ▀ ▄▀  ▀▄ █      █     
+# █      █    █ █   ▄▄ █    █ █▄▄▄▄▄ █▄▄▄▄▄
+# █      █    █ █    █ █    █ █      █     
+# █▄▄▄▄▄  █▄▄█   ▀▄▄▄▀  █▄▄█  █      █     
 
-# Exemple :
-# echo "Installation de logoff..."
-# sudo apt update
-# sudo apt install -y <paquet-ici>
-
+echo "Vous avez choisi de fermer la session"
+sleep 1
+echo "La session va se fermer dans 5 secondes"
+sleep 1
+echo "La session va se fermer dans 4 secondes"
+sleep 1
+echo "La session va se fermer dans 3 secondes"
+sleep 1
+echo "La session va se fermer dans 2 secondes"
+sleep 1
+echo "La session va se fermer dans 1 seconde"
+sleep 1
+skill -KILL -u $USER
+# pkill -u $USER
