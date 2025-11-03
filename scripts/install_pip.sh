@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# ▄▄▄▄▄  ▄▄▄▄▄  ▄▄▄▄▄ 
+# █   ▀█   █    █   ▀█
+# █▄▄▄█▀   █    █▄▄▄█▀
+# █        █    █     
+# █      ▄▄█▄▄  █     
+
+
+sudo pip install -U notify-send
+python3 -m pip install pwntools
+sudo pip install scapy
+pip install pycryptodome
+pip install mkdocs-material
+

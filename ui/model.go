@@ -39,7 +39,7 @@ func NewModel(items []string) Model {
 
 	scriptMap := map[string]string{
 		"Visual Studio Code": "scripts/install_vscode.sh",
-		"Google Chrome":      "scripts/install_chrome.sh",
+		"Google Chrome":      "scripts/install_google-chrome.sh",
 		"Burp Suite":         "scripts/install_burpsuite.sh",
 		"Exa":                "scripts/install_exa.sh",
 	}
