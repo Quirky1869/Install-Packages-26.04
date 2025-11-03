@@ -8,13 +8,6 @@
 
 # Pour information : https://github.com/ohmyzsh/ohmyzsh
 
-# Déclaration des variables
-if [[ "$LANG" == fr_* ]]; then
-    varDownload="Téléchargements"
-else
-    varDownload="Downloads"
-fi
-
 sudo apt install -y zsh git curl
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

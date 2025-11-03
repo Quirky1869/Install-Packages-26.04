@@ -7,26 +7,28 @@ func (m Model) View() string {
 
 	case "install":
 		return BorderStyle.Render(fmt.Sprintf(
-			"%s\n\n%s\n\n%s",
+			"%s\n\n%s\n\n%s\n\n%s",
 			TitleStyle.Render("Installation en cours..."),
 			m.progress.View(),
 			m.output,
+			HelpStyle.Render("Appuyez sur 'q' pour quitter à tout moment."),
 		))
 
 	case "done":
 		return BorderStyle.Render(fmt.Sprintf(
-			"%s\n\n%s",
+			"%s\n\n%s\n\n%s",
 			TitleStyle.Render("Résultat de l’installation"),
 			m.output,
+			HelpStyle.Render("Installation terminée ! Appuyez sur q ou Entrée pour quitter."),
 		))
 
 	default: // "list"
 		s := TitleStyle.Render(m.list.Title) + "\n\n"
 
 		for i, li := range m.list.Items() {
-			it := li.(item)
+			it := li.(listItem)
 			check := "[ ]"
-			if m.selected[it.title] {
+			if m.selected[it.Title()] {
 				check = "[x]"
 			}
 
@@ -35,7 +37,7 @@ func (m Model) View() string {
 				cursor = "> "
 			}
 
-			s += fmt.Sprintf("%s%s %s\n", cursor, check, it.title)
+			s += fmt.Sprintf("%s%s %s\n", cursor, check, it.Title())
 		}
 
 		s += HelpStyle.Render("\n↑/↓ pour naviguer • espace pour sélectionner • Entrée pour installer • q pour quitter")

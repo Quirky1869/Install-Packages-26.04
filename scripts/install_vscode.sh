@@ -16,7 +16,7 @@ else
 fi
 
 # echo Telechargement de Visual Studio Code :
-wget --content-disposition https://go.microsoft.com/fwlink/?LinkID=760868 -o ~/$varDownload/vscode.deb
+wget --content-disposition https://go.microsoft.com/fwlink/?LinkID=760868 -O ~/$varDownload/vscode.deb
 # echo Installation de Visual Studio Code :
 sudo dpkg -i ~/$varDownload/vscode.deb
 sudo rm ./vscode.deb

@@ -13,7 +13,7 @@ else
     varDownload="Downloads"
 fi
 
-wget https://github.com/knqyf263/pet/releases/download/v1.0.1/pet_1.0.1_linux_amd64.deb -o ~/$varDownload/pet.deb
+wget https://github.com/knqyf263/pet/releases/download/v1.0.1/pet_1.0.1_linux_amd64.deb -O ~/$varDownload/pet.deb
 sudo dpkg -i ~/$varDownload/pet.deb
 sudo apt update -y && sudo apt install fzf -y
 export EDITOR=micro

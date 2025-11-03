@@ -4,10 +4,10 @@ import "github.com/charmbracelet/lipgloss"
 
 var (
 	// Couleurs principales
-	colorPrimary   = lipgloss.Color("#7D56F4")
-	colorSecondary = lipgloss.Color("#04B575")
-	colorSelected  = lipgloss.Color("#FFB86C")
-	colorText      = lipgloss.Color("#E5E5E5")
+	colorPrimary = lipgloss.Color("#7D56F4")
+	//colorSecondary = lipgloss.Color("#04B575")
+	colorSelected = lipgloss.Color("#FFB86C")
+	colorText     = lipgloss.Color("#E5E5E5")
 
 	// Styles
 	TitleStyle = lipgloss.NewStyle().
