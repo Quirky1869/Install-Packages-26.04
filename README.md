@@ -2,11 +2,11 @@
 
 ![](./_images/go.png)  
 
-[![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-E95420?style=plastic&logo=ubuntu)](https://www.ubuntu-fr.org/download/)  
-![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)  
-![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)  
-[![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)  
-[![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)  
+[![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-E95420?style=plastic&logo=ubuntu)](https://www.ubuntu-fr.org/download/)
+![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)
+![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)
+[![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)
+[![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)
 
 ## Résumé
 
@@ -91,9 +91,9 @@ Vous pouvez si vous le souhaitez rajouter vos scripts :
 
 ## Auteur
 Projet développé par Quirky  
-<a href="https://github.com/Quirky1869" target="_blank">  
-  <img src="./_images/white-github.png" alt="GitHub" width="30" height="30" style="vertical-align:middle;"> GitHub  
-</a>  
+<a href="https://github.com/Quirky1869" target="_blank">
+  <img src="./_images/white-github.png" alt="GitHub" width="30" height="30" style="vertical-align:middle;"> GitHub
+</a>
 
 ## Licence
 Ce projet est distribué sous licence MIT  
