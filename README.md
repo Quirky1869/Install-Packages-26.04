@@ -74,6 +74,39 @@ Vous pouvez si vous le souhaitez rajouter vos scripts :
 - Relancer le `./build.sh` pour recompiler le binaire `bin/install`
 - Puis suivre la procédure [d'installation](#installation)
 
+> [!CAUTION]  
+> Pour pouvoir lancer `./build.sh` il vous faut avoir [installé golang sur votre pc](https://go.dev/doc/install)  
+
+<details>  
+<summary style="font-weight: bold; color: #a000fd;">Procédure (Cliquer pour déplier)</summary>  
+
+```bash
+# Supprimer une éventuelle ancienne version de Go
+sudo rm -rf /usr/local/go  
+
+# Dézipper le fichier téléchargé dans /usr/local
+# (Adaptez le chemin et le nom du fichier si nécessaire)
+sudo tar -C /usr/local -xzf ~/Téléchargements/go1.25.3.linux-amd64.tar.gz  
+
+# Ajouter Go au PATH et définir GOPATH
+# Ouvrir votre fichier ~/.bashrc ou ~/.zshrc
+micro ~/.bashrc  
+
+# Ajouter à la fin du fichier
+export PATH=$PATH:/usr/local/go/bin  
+export GOPATH=$HOME/go  
+export PATH=$PATH:$GOPATH/bin  
+
+# Recharger la configuration du shell
+source ~/.bashrc  
+
+# Vérifier la bonne installation
+go version  
+```
+
+</details>  
+
+
 ## Astuces
 > [!TIP]
 > - Appuyez sur Espace pour sélectionner/désélectionner un paquet.  
@@ -91,9 +124,9 @@ Vous pouvez si vous le souhaitez rajouter vos scripts :
 
 ## Auteur
 Projet développé par Quirky  
-<a href="https://github.com/Quirky1869" target="_blank">
-  <img src="./_images/white-github.png" alt="GitHub" width="30" height="30" style="vertical-align:middle;"> GitHub
-</a>
+<a href="https://github.com/Quirky1869" target="_blank">  
+  <img src="./_images/white-github.png" alt="GitHub" width="30" height="30" style="vertical-align:middle;"> GitHub  
+</a>  
 
 ## Licence
 Ce projet est distribué sous licence MIT  
