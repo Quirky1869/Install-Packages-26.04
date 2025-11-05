@@ -10,7 +10,7 @@ names=(
   git
   doc-scripts
   themes
-  google-chrome
+  chrome
   brave
   discord
   apache2
@@ -37,7 +37,7 @@ names=(
   bashrc
   tgpt
   ninja-binary
-  ssh-list
+  sshlist
   raccourcis-clavier
   logoff
 )
