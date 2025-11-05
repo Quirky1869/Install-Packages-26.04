@@ -2,11 +2,11 @@
 
 ![](./_images/go.png)  
 
-[![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-E95420?style=plastic&logo=ubuntu)](https://www.ubuntu-fr.org/download/)
-![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)
-![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)
-[![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)
-[![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)
+[![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-E95420?style=plastic&logo=ubuntu)](https://www.ubuntu-fr.org/download/)  
+![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)  
+![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)  
+[![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)  
+[![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)  
 
 ## Résumé
 
@@ -75,7 +75,7 @@ Vous pouvez si vous le souhaitez rajouter vos scripts :
 - Puis suivre la procédure [d'installation](#installation)
 
 > [!CAUTION]  
-> Pour pouvoir lancer `./build.sh` il vous faut avoir [installé golang sur votre pc](https://go.dev/doc/install)  
+> Pour pouvoir lancer <code>./build.sh</code> il vous faut avoir <a href="https://go.dev/doc/install" target="_blank"> installé golang </a> sur votre pc   
 
 <details>  
 <summary style="font-weight: bold; color: #a000fd;">Procédure (Cliquer pour déplier)</summary>  
