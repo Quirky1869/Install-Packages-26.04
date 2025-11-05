@@ -9,14 +9,11 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-// Messages personnalisés
 type (
 	outputMsg string
 	tickMsg   time.Time
-	// nextScriptMsg struct{}
 )
 
-// Fonction qui exécute un script à la fois
 func runNextScript(m Model) tea.Cmd {
 	return func() tea.Msg {
 		selectedItems := []string{}
@@ -26,7 +23,6 @@ func runNextScript(m Model) tea.Cmd {
 			}
 		}
 
-		// Si tous les scripts ont été exécutés
 		if m.currentIdx >= len(selectedItems) {
 			return outputMsg("\nInstallation terminée ! Appuyez sur q ou Entrée pour quitter.\n")
 		}
@@ -48,14 +44,12 @@ func runNextScript(m Model) tea.Cmd {
 	}
 }
 
-// Tick pour animer la progression
 func tick() tea.Cmd {
 	return tea.Tick(time.Millisecond*100, func(t time.Time) tea.Msg {
 		return tickMsg(t)
 	})
 }
 
-// Gestion de la logique quand l'utilisateur navigue dans la liste
 func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 
@@ -75,7 +69,6 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 			selectedItem := m.list.Items()[current].(listItem)
 			itemName := string(selectedItem)
 
-			// Cas spécial : "Tout sélectionner / désélectionner"
 			if strings.HasPrefix(itemName, "Tout") {
 				allSelected := false
 				for _, v := range m.selected {
@@ -125,7 +118,6 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-// Logique pendant l’installation
 func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 
@@ -161,7 +153,6 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-// Fonction principale de mise à jour globale
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch m.state {
 	case "list":
