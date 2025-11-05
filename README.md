@@ -90,7 +90,7 @@ sudo tar -C /usr/local -xzf ~/Téléchargements/go1.25.3.linux-amd64.tar.gz
 
 # Ajouter Go au PATH et définir GOPATH
 # Ouvrir votre fichier ~/.bashrc ou ~/.zshrc
-micro ~/.bashrc  
+micro ~/.zshrc  
 
 # Ajouter à la fin du fichier
 export PATH=$PATH:/usr/local/go/bin  
@@ -98,7 +98,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin  
 
 # Recharger la configuration du shell
-source ~/.bashrc  
+source ~/.zshrc  
 
 # Vérifier la bonne installation
 go version  
