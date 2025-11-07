@@ -12,4 +12,4 @@ python3 -m pip install pwntools
 sudo pip install scapy
 pip install pycryptodome
 pip install mkdocs-material
-
+python3 -m pipx install impacket

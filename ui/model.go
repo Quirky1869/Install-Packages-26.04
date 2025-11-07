@@ -12,8 +12,9 @@ type Model struct {
 	scriptMap  map[string]string // association nom -> script
 	progress   progress.Model    // barre de progression
 	output     string            // affichage terminal
-	state      string            // état : "list", "install", "done"
+	state      string            // état : "list", "install", "done", "log"
 	currentIdx int               // index du script en cours
+	logPath    string            // chemin du fichier de log
 }
 
 func NewModel(items []string) Model {
@@ -28,12 +29,15 @@ func NewModel(items []string) Model {
 	l.SetFilteringEnabled(false)
 	l.DisableQuitKeybindings()
 
+	defaultLogPath := "/var/log/Install-Packages-26.04.log"
+
 	return Model{
 		list:      l,
 		selected:  make(map[string]bool),
 		progress:  progress.New(progress.WithDefaultGradient()),
 		scriptMap: getScriptMap(),
 		state:     "list",
+		logPath:   defaultLogPath,
 	}
 }
 
@@ -58,7 +62,6 @@ func getScriptMap() map[string]string {
 		"Binary Ninja":       "scripts/install_binaryninja.sh",
 		"Brave":              "scripts/install_brave.sh",
 		"Burp Suite":         "scripts/install_burpsuite.sh",
-		"Google Chrome":      "scripts/install_chrome.sh",
 		"DCV":                "scripts/install_dcv.sh",
 		"Doc Scripts":        "scripts/install_doc-scripts.sh",
 		"Docker":             "scripts/install_docker.sh",
@@ -66,6 +69,7 @@ func getScriptMap() map[string]string {
 		"Exa":                "scripts/install_exa.sh",
 		"Git":                "scripts/install_git.sh",
 		"Github Desktop":     "scripts/install_github-desktop.sh",
+		"Google Chrome":      "scripts/install_chrome.sh",
 		"Holehe":             "scripts/install_holehe.sh",
 		"Kitty Terminal":     "scripts/install_kitty-terminal.sh",
 		"Lazy Docker":        "scripts/install_lazy-docker.sh",
