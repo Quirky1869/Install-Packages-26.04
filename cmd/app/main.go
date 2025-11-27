@@ -106,6 +106,7 @@ func main() {
 		"Vagrant",
 		"VirtualBox",
 		"Visual Studio Code",
+		"Warp",
 		"Wireshark",
 		"Zsh and Ohmyzsh",
 	}

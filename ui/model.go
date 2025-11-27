@@ -89,6 +89,7 @@ func getScriptMap() map[string]string {
 		"Vagrant":            "scripts/install_vagrant.sh",
 		"VirtualBox":         "scripts/install_virtualbox.sh",
 		"Visual Studio Code": "scripts/install_vscode.sh",
+		"Warp":               "scripts/install_warp-terminal.sh",
 		"Wireshark":          "scripts/install_wireshark.sh",
 		"Zsh and Ohmyzsh":    "scripts/install_zsh-ohmyzsh.sh",
 	}
