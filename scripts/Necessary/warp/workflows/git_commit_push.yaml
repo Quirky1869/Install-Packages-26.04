@@ -1,0 +1,21 @@
+---
+name: Git Commit
+command: "git add . ; git commit -m '{{argument_1}}' ; git push origin {{argument_2}}"
+description: add commit and push
+arguments:
+  - name: argument_1
+    arg_type: Text
+    description: message to commit
+    default_value: update
+  - name: argument_2
+    arg_type: Text
+    description: branch
+    default_value: main
+tags:
+  - git
+  - commit
+  - push
+source_url: ~
+author: Quirky
+author_url: https://github.com/Quirky1869
+shells: []
