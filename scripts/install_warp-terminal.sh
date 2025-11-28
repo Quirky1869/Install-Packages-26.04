@@ -36,3 +36,15 @@ cp -f /home/$USER/scripts/Necessary/warp/themes/* /home/$USER/.local/share/warp-
 # Workflows
 mkdir -p /home/$USER/.local/share/warp-terminal/workflows
 cp -f /home/$USER/scripts/Necessary/warp/workflows/* /home/$USER/.local/share/warp-terminal/workflows
+
+# Fonts
+mkdir -p ~/.local/share/fonts
+sleep 1
+wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+sleep 1
+cd ~/.local/share/fonts
+unzip JetBrainsMono.zip
+sleep 1
+rm JetBrainsMono.zip README.md OFL.txt
+# Pour faire reconnaitre à l'OS les novelles fonts
+fc-cache -fv
