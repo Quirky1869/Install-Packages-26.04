@@ -18,7 +18,7 @@ sudo dpkg -i ~/$varDownload/pet.deb
 sudo apt update -y && sudo apt install fzf -y
 export EDITOR=micro
 sleep 2
-pet configure
+#pet configure
 sleep 1
 rm -f ~/.config/pet/snippet.toml
 cp -f ~/scripts/Necessary/Pet/snippet.toml ~/.config/pet/
