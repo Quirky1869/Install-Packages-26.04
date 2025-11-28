@@ -1,0 +1,18 @@
+---
+name: Git Commit Script
+command: "git add .\ngit commit -m \"{{arg_1}}\"\ngit push origin {{arg_2}}"
+description: Entire Script Version
+arguments:
+  - name: arg_1
+    arg_type: Text
+    description: commit
+    default_value: update
+  - name: arg_2
+    arg_type: Text
+    description: branch
+    default_value: main
+tags: []
+source_url: https://github.com/Quirky1869
+author: Quirky
+author_url: ~
+shells: []
