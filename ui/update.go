@@ -8,6 +8,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/charmbracelet/bubbles/progress"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -54,12 +55,10 @@ func runNextScript(m Model) tea.Cmd {
 		app := selectedItems[m.currentIdx]
 		path := m.scriptMap[app]
 
-		
 		ts := time.Now().Format(time.RFC3339)
 		header := fmt.Sprintf("---- [%s] Début installation: %s (%s)\n", ts, app, path)
 		_ = appendLog(m.logPath, header)
 
-		
 		out, err := exec.Command("bash", path).CombinedOutput()
 		outText := string(out)
 		if outText == "" {
@@ -67,7 +66,6 @@ func runNextScript(m Model) tea.Cmd {
 		}
 		_ = appendLog(m.logPath, outText)
 
-		
 		var sb strings.Builder
 		sb.WriteString(fmt.Sprintf("Installation de %s terminée.\n\n", app))
 		sb.WriteString("--- Sortie du script ---\n")
@@ -144,7 +142,6 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 			itemName := string(selectedItem)
 
 			if strings.HasPrefix(itemName, "Tout") {
-				
 				allSelected := false
 				for _, v := range m.selected {
 					if !v {
@@ -153,7 +150,6 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 					}
 				}
 
-				
 				for app := range m.scriptMap {
 					if !strings.HasPrefix(app, "Tout") {
 						m.selected[app] = allSelected
@@ -167,7 +163,6 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 				}
 
 			} else {
-				
 				m.selected[itemName] = !m.selected[itemName]
 			}
 
@@ -181,7 +176,6 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, nil
 			}
 
-			
 			headerPath := m.logPath
 			headerContent := fmt.Sprintf("==== Nouveau run : %s ====\n", time.Now().Format(time.RFC3339))
 			if err := appendLog(headerPath, headerContent); err != nil {
@@ -198,18 +192,14 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 				_ = appendLog(m.logPath, selection)
 			}
 
-			
 			m.state = "install"
 			m.currentIdx = 0
 
-			
 			progressCmd := m.progress.SetPercent(0.0)
 
-			
 			currentAppName := selectedItems[0]
-			m.output = fmt.Sprintf("Démarrage de l'installation : **%s**\n\n", currentAppName)
+			m.output = fmt.Sprintf("Démarrage de l'installation : %s\n\n", currentAppName)
 
-			
 			return m, tea.Batch(progressCmd, runNextScript(m))
 
 		case "q", "ctrl+c":
@@ -224,39 +214,40 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 
 	case tickMsg:
-		
 		return m, tick()
 
 	case outputMsg:
-		
-		m.output = string(msg)
 		m.currentIdx++
 
 		selectedItems := getSelectedItems(m)
 		selectedCount := len(selectedItems)
 
+		var statusMsg string
+		previousApp := selectedItems[m.currentIdx-1]
 		
+		if strings.Contains(string(msg), "Erreur lors de") {
+		    statusMsg = fmt.Sprintf("Installation de %s terminée avec des erreurs.", previousApp)
+		} else {
+		    statusMsg = fmt.Sprintf("Installation de %s terminée avec succès.", previousApp)
+		}
+
+		m.output = statusMsg
+
 		progress := float64(m.currentIdx) / float64(selectedCount)
 		if progress > 1.0 {
 			progress = 1.0
 		}
 
-		
 		cmd := m.progress.SetPercent(progress)
 
-		
 		if m.currentIdx < selectedCount {
-			
 			currentAppName := selectedItems[m.currentIdx]
 
-			
-			m.output = fmt.Sprintf("%s\nScript terminé. Préparation du script suivant:\n Démarrage de l'installation : **%s**\n\n", m.output, currentAppName)
+			m.output = fmt.Sprintf("%s\nScript terminé. Préparation du script suivant:\nDémarrage de l'installation : %s\n\n", m.output, currentAppName)
 
-			
 			return m, tea.Batch(cmd, runNextScript(m))
 		}
 
-		
 		trailer := fmt.Sprintf("==== Fin du run : %s ====\n\n", time.Now().Format(time.RFC3339))
 		_ = appendLog(m.logPath, trailer)
 
@@ -269,10 +260,16 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	
 	if msg, ok := msg.(tea.WindowSizeMsg); ok {
 		m.width = msg.Width
 		m.height = msg.Height
+	}
+
+	switch msg := msg.(type) {
+	case progress.FrameMsg:
+		progressModel, cmd := m.progress.Update(msg)
+		m.progress = progressModel.(progress.Model)
+		return m, cmd
 	}
 
 	switch m.state {

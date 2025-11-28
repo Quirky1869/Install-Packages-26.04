@@ -7,16 +7,16 @@ import (
 )
 
 type Model struct {
-	list        list.Model        // composant liste (sélection)
-	selected    map[string]bool   // éléments sélectionnés
-	scriptMap   map[string]string // association nom -> script
-	progress    progress.Model    // barre de progression
-	output      string            // affichage terminal
-	state       string            // état : "list", "install", "done", "log"
-	currentIdx  int               // index du script en cours
-	logPath     string            // chemin du fichier de log
-	width       int               // Largeur du terminal pour le rendu de la barre
-	height      int               // Hauteur du terminal
+	list        list.Model
+	selected    map[string]bool
+	scriptMap   map[string]string
+	progress    progress.Model
+	output      string
+	state       string
+	currentIdx  int
+	logPath     string
+	width       int
+	height      int
 }
 
 func NewModel(items []string) Model {

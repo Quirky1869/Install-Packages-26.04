@@ -18,8 +18,8 @@ Aucun besoin de Go ou de scripts compliqués — tout se lance depuis le termina
 
 - ✅ Interface TUI (Terminal User Interface) interactive avec [Bubble Tea](https://github.com/charmbracelet/bubbletea)
 - ✅ Sélection multiple des paquets à installer
-- 🛠️ Barre de progression dynamique pendant l’installation
-- 🛠️ Adaptation automatique (2 ou 50 scripts — la barre s’ajuste)
+- ✅ Barre de progression dynamique pendant l’installation
+- ✅ Adaptation automatique (2 ou 50 scripts — la barre s’ajuste)
 - ✅ Aucun besoin de Go pour exécuter le programme final (via le binaire)
 
 ## Structure du projet
