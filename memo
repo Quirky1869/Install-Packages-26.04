@@ -1,3 +1,27 @@
 https://patorjk.com/software/taag/#p=display&f=ANSI+Shadow&t=BIENVENUE&x=none&v=1&h=0&w=80&we=false
 Mono 9
 ANSI SHADOW
+
+# Memo pour installation d'eza avec icones + fonts
+
+## Eza
+
+Commencer par télécharger la releases d'[eza](https://github.com/eza-community/eza)
+Une fois le zip extrait faire un : `sudo cp -f eza /usr/local/bin`
+
+Editer ~/.zshrc pour ajouter : `alias e="eza --icons -algh"`
+
+## Fonts
+
+Pour avoir les icones compatible il faut installer un pack d'icone "nerd fonts" :
+```bash
+mkdir -p ~/.local/share/fonts
+wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+cd ~/.local/share/fonts
+unzip JetBrainsMono.zip
+rm JetBrainsMono.zip README.md OFL.txt
+# Pour faire reconnaitre à l'os les novelles fonts
+fc-cache -fv
+```
+
+Maintenant les nouvelles fonts "JetBrainsMono" (nerd fonts) devraient être disponible (relancer le terminal au cas où)
