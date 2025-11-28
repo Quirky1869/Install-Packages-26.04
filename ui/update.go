@@ -13,7 +13,7 @@ import (
 
 type (
 	outputMsg string
-	tickMsg   time.Time
+	tickMsg   time.Time
 )
 
 func getSelectedItems(m Model) []string {
@@ -76,11 +76,11 @@ func runNextScript(m Model) tea.Cmd {
 		sb.WriteString("------------------------\n")
 		
 		if err != nil {
-			errLine := fmt.Sprintf("❌ Erreur lors de %s : %v\n\n", app, err)
+			errLine := fmt.Sprintf("Erreur lors de %s : %v\n\n", app, err)
 			_ = appendLog(m.logPath, errLine)
 			sb.WriteString(errLine)
 		} else {
-			successLine := fmt.Sprintf("✅ %s installé avec succès\n\n", app)
+			successLine := fmt.Sprintf("%s installé avec succès\n\n", app)
 			_ = appendLog(m.logPath, successLine)
 			sb.WriteString(successLine)
 		}
@@ -189,7 +189,7 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 			headerContent := fmt.Sprintf("==== Nouveau run : %s ====\n", time.Now().Format(time.RFC3339))
 			if err := appendLog(headerPath, headerContent); err != nil {
 				fallback := "./Install-Packages-26.04.log"
-				m.output = fmt.Sprintf("⚠️ Impossible d'écrire dans %s (permission). Les logs seront écrits dans %s\n\n", headerPath, fallback)
+				m.output = fmt.Sprintf("Impossible d'écrire dans %s (permission). Les logs seront écrits dans %s\n\n", headerPath, fallback)
 				m.logPath = fallback
 				_ = appendLog(m.logPath, headerContent)
 			} else {
@@ -210,7 +210,7 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 			// 2. Affichage du premier script qui va commencer
 			currentAppName := selectedItems[0]
-			m.output = fmt.Sprintf("▶️ Démarrage de l'installation : **%s**\n\n", currentAppName)
+			m.output = fmt.Sprintf("Démarrage de l'installation : **%s**\n\n", currentAppName)
 
 			// 3. Lancement de la première commande et de la mise à jour de la progression
 			return m, tea.Batch(progressCmd, runNextScript(m))
@@ -254,7 +254,7 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 			currentAppName := selectedItems[m.currentIdx]
 			
 			// On ajoute le message d'attente/démarrage pour le prochain script
-			m.output = fmt.Sprintf("Script terminé. Préparation du script suivant:\n▶️ Démarrage de l'installation : **%s**\n\n", currentAppName)
+			m.output = fmt.Sprintf("Script terminé. Préparation du script suivant:\n Démarrage de l'installation : **%s**\n\n", currentAppName)
 
 			// 3. Exécution de la commande de mise à jour de la barre ET du script suivant
 			return m, tea.Batch(cmd, runNextScript(m))
