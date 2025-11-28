@@ -6,6 +6,25 @@
 #  ██ ██▀  █▄▄█  █   ▀▄ █       ▀▀▀     █    █      █   ▀▄ █ ▀▀ █   █    █  █ █  █▄▄█  █     
 #  █   █  █    █ █    ▀ █               █    █▄▄▄▄▄ █    ▀ █    █ ▄▄█▄▄  █   ██ █    █ █▄▄▄▄▄
 
+# Déclaration des variables
+if [[ "$LANG" == fr_* ]]; then
+    varDownload="Téléchargements"
+else
+    varDownload="Downloads"
+fi
+
+linkWarpTerminal="https://releases.warp.dev/stable/v0.2025.11.19.08.12.stable_06/warp-terminal_0.2025.11.19.08.12.stable.06_amd64.deb"
+
+if wget $linkWarpTerminal -O ~/$varDownload/warp-terminal.deb; then
+    echo "Téléchargement réussi. Installation du paquet..."
+    sudo dpkg -i ~/$varDownload/warp-terminal.deb
+else
+    echo "Erreur: Le téléchargement du paquet a échoué."
+    echo "Tentative d'installation du paquet en utilisant le fichier déjà présent."
+    sudo dpkg -i /home/$USER/scripts/Necessary/warp/warp-terminal.deb
+fi
+
+# Themes
 #OS="$(uname -s)" && echo "Detected OS: $OS" && WARP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal" && echo "Using Warp data dir: $WARP_DIR" && mkdir -p "$WARP_DIR" && cd "$WARP_DIR" && if [ -d themes ]; then echo "Directory $WARP_DIR/themes already exists; skipping clone."; else echo "Trying HTTPS clone into $WARP_DIR/themes..." && if git clone https://github.com/warpdotdev/themes.git themes; then echo "Cloned via HTTPS."; else echo "HTTPS clone failed, trying GitHub CLI..." && if command -v gh >/dev/null 2>&1; then gh repo clone warpdotdev/themes themes; else echo "HTTPS clone failed and gh CLI not installed or not in PATH." && exit 1; fi; fi; fi
 
 OS="$(uname -s)" && echo "Detected OS: $OS"
@@ -29,7 +48,6 @@ else
   fi
 fi
 
-# Themes
 # https://github.com/ChristianLempa/dotfiles/tree/main/.warp/themes
 cp -f /home/$USER/scripts/Necessary/warp/themes/* /home/$USER/.local/share/warp-terminal/themes/standard/
 
