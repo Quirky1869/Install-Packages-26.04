@@ -2,6 +2,9 @@ package ui
 
 import "github.com/charmbracelet/lipgloss"
 
+
+var colorHighlight = lipgloss.Color("#6e4dd1")
+
 var (
 	// Couleurs principales
 	colorPrimary = lipgloss.Color("#7D56F4")
@@ -9,7 +12,7 @@ var (
 	colorSelected = lipgloss.Color("#FFB86C")
 	colorText     = lipgloss.Color("#E5E5E5")
 
-	// Styles
+	
 	TitleStyle = lipgloss.NewStyle().
 			Bold(true).
 			Foreground(colorPrimary).
@@ -22,7 +25,7 @@ var (
 	SelectedItemStyle = lipgloss.NewStyle().
 				PaddingLeft(2).
 				Bold(true).
-				Foreground(colorSelected)
+				Foreground(colorHighlight)
 
 	HelpStyle = lipgloss.NewStyle().
 			Foreground(lipgloss.Color("#666666")).

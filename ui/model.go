@@ -7,14 +7,16 @@ import (
 )
 
 type Model struct {
-	list       list.Model        // composant liste (sélection)
-	selected   map[string]bool   // éléments sélectionnés
-	scriptMap  map[string]string // association nom -> script
-	progress   progress.Model    // barre de progression
-	output     string            // affichage terminal
-	state      string            // état : "list", "install", "done", "log"
-	currentIdx int               // index du script en cours
-	logPath    string            // chemin du fichier de log
+	list        list.Model        // composant liste (sélection)
+	selected    map[string]bool   // éléments sélectionnés
+	scriptMap   map[string]string // association nom -> script
+	progress    progress.Model    // barre de progression
+	output      string            // affichage terminal
+	state       string            // état : "list", "install", "done", "log"
+	currentIdx  int               // index du script en cours
+	logPath     string            // chemin du fichier de log
+	width       int               // Largeur du terminal pour le rendu de la barre
+	height      int               // Hauteur du terminal
 }
 
 func NewModel(items []string) Model {
@@ -32,12 +34,12 @@ func NewModel(items []string) Model {
 	defaultLogPath := "/var/log/Install-Packages-26.04.log"
 
 	return Model{
-		list:      l,
-		selected:  make(map[string]bool),
-		progress:  progress.New(progress.WithDefaultGradient()),
-		scriptMap: getScriptMap(),
-		state:     "list",
-		logPath:   defaultLogPath,
+		list:        l,
+		selected:    make(map[string]bool),
+		progress:    progress.New(progress.WithDefaultGradient()),
+		scriptMap:   getScriptMap(),
+		state:       "list",
+		logPath:     defaultLogPath,
 	}
 }
 

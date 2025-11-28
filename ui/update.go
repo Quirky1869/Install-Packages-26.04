@@ -48,19 +48,18 @@ func runNextScript(m Model) tea.Cmd {
 		selectedItems := getSelectedItems(m)
 
 		if m.currentIdx >= len(selectedItems) {
-			// S'il n'y a plus de scripts à lancer, retourne un message vide.
 			return outputMsg("")
 		}
 
 		app := selectedItems[m.currentIdx]
 		path := m.scriptMap[app]
 
-		// Log du début
+		
 		ts := time.Now().Format(time.RFC3339)
 		header := fmt.Sprintf("---- [%s] Début installation: %s (%s)\n", ts, app, path)
 		_ = appendLog(m.logPath, header)
 
-		// Exécution synchrone du script bash
+		
 		out, err := exec.Command("bash", path).CombinedOutput()
 		outText := string(out)
 		if outText == "" {
@@ -68,13 +67,13 @@ func runNextScript(m Model) tea.Cmd {
 		}
 		_ = appendLog(m.logPath, outText)
 
-		// Log de fin
+		
 		var sb strings.Builder
 		sb.WriteString(fmt.Sprintf("Installation de %s terminée.\n\n", app))
 		sb.WriteString("--- Sortie du script ---\n")
 		sb.WriteString(outText)
 		sb.WriteString("------------------------\n")
-		
+
 		if err != nil {
 			errLine := fmt.Sprintf("Erreur lors de %s : %v\n\n", app, err)
 			_ = appendLog(m.logPath, errLine)
@@ -102,8 +101,7 @@ func openLogCmd(path string) tea.Cmd {
 			cmd.Stdin = os.Stdin
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
-			// On ignore l'erreur d'exécution car on essaie plusieurs commandes.
-			_ = cmd.Run() 
+			_ = cmd.Run()
 		}
 
 		if editor != "" {
@@ -146,7 +144,7 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 			itemName := string(selectedItem)
 
 			if strings.HasPrefix(itemName, "Tout") {
-				// Logique pour Tout sélectionner / désélectionner
+				
 				allSelected := false
 				for _, v := range m.selected {
 					if !v {
@@ -155,10 +153,9 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 					}
 				}
 
-				// Inclut tous les éléments du scriptMap dans la sélection
+				
 				for app := range m.scriptMap {
-					// Assurez-vous de ne pas sélectionner "Tout..." lui-même dans la map
-					if !strings.HasPrefix(app, "Tout") { 
+					if !strings.HasPrefix(app, "Tout") {
 						m.selected[app] = allSelected
 					}
 				}
@@ -170,7 +167,7 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 				}
 
 			} else {
-				// Toggle la sélection pour l'élément courant
+				
 				m.selected[itemName] = !m.selected[itemName]
 			}
 
@@ -184,7 +181,7 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, nil
 			}
 
-			// Initialisation des logs
+			
 			headerPath := m.logPath
 			headerContent := fmt.Sprintf("==== Nouveau run : %s ====\n", time.Now().Format(time.RFC3339))
 			if err := appendLog(headerPath, headerContent); err != nil {
@@ -201,18 +198,18 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 				_ = appendLog(m.logPath, selection)
 			}
 
-			// --- Démarrage de l'installation ---
+			
 			m.state = "install"
 			m.currentIdx = 0
+
 			
-			// 1. Initialisation de la barre de progression à 0%
 			progressCmd := m.progress.SetPercent(0.0)
 
-			// 2. Affichage du premier script qui va commencer
+			
 			currentAppName := selectedItems[0]
 			m.output = fmt.Sprintf("Démarrage de l'installation : **%s**\n\n", currentAppName)
 
-			// 3. Lancement de la première commande et de la mise à jour de la progression
+			
 			return m, tea.Batch(progressCmd, runNextScript(m))
 
 		case "q", "ctrl+c":
@@ -227,43 +224,42 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 
 	case tickMsg:
-		// Le tickMsg est conservé, mais il ne fait rien ici car la mise à jour
-		// est pilotée par la fin de l'exécution du script (outputMsg).
+		
 		return m, tick()
 
 	case outputMsg:
-		// 1. Ajout de la sortie du script précédent
+		
 		m.output = string(msg)
 		m.currentIdx++
 
 		selectedItems := getSelectedItems(m)
 		selectedCount := len(selectedItems)
+
 		
-		// Calcul de la progression (scripts terminés / scripts totaux)
 		progress := float64(m.currentIdx) / float64(selectedCount)
 		if progress > 1.0 {
 			progress = 1.0
 		}
+
 		
-		// 2. Mise à jour de la barre de progression
 		cmd := m.progress.SetPercent(progress)
 
-		// Vérification si d'autres scripts sont à lancer
+		
 		if m.currentIdx < selectedCount {
-			// Préparation de l'affichage pour le script suivant
-			currentAppName := selectedItems[m.currentIdx]
 			
-			// On ajoute le message d'attente/démarrage pour le prochain script
-			m.output = fmt.Sprintf("Script terminé. Préparation du script suivant:\n Démarrage de l'installation : **%s**\n\n", currentAppName)
+			currentAppName := selectedItems[m.currentIdx]
 
-			// 3. Exécution de la commande de mise à jour de la barre ET du script suivant
+			
+			m.output = fmt.Sprintf("%s\nScript terminé. Préparation du script suivant:\n Démarrage de l'installation : **%s**\n\n", m.output, currentAppName)
+
+			
 			return m, tea.Batch(cmd, runNextScript(m))
 		}
 
-		// Si tous les scripts sont terminés
+		
 		trailer := fmt.Sprintf("==== Fin du run : %s ====\n\n", time.Now().Format(time.RFC3339))
 		_ = appendLog(m.logPath, trailer)
-		
+
 		m.state = "done"
 		m.output = "INSTALLATION TERMINEE !"
 		return m, cmd
@@ -273,6 +269,12 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	
+	if msg, ok := msg.(tea.WindowSizeMsg); ok {
+		m.width = msg.Width
+		m.height = msg.Height
+	}
+
 	switch m.state {
 	case "list":
 		return m.updateList(msg)

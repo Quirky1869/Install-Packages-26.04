@@ -3,6 +3,18 @@ package ui
 import "fmt"
 
 func (m Model) View() string {
+
+	
+	contentWidth := m.width - BorderStyle.GetHorizontalFrameSize()
+
+	if m.width > 0 && contentWidth > 0 {
+		
+		m.progress.Width = contentWidth
+	} else if m.width == 0 {
+		
+		return "Initialisation de la TUI..."
+	}
+
 	switch m.state {
 
 	case "install":
@@ -32,21 +44,28 @@ func (m Model) View() string {
 		))
 
 	default:
+		
 		s := TitleStyle.Render(m.list.Title) + "\n\n"
 
 		for i, li := range m.list.Items() {
 			it := li.(listItem)
 			check := "[ ]"
-			if m.selected[it.Title()] {
+			
+			if _, ok := m.selected[it.Title()]; ok && m.selected[it.Title()] {
 				check = "[x]"
 			}
 
 			cursor := "  "
+			itemStyle := ItemStyle
+
 			if i == m.list.Index() {
+				
 				cursor = "> "
+				itemStyle = SelectedItemStyle
 			}
 
-			s += fmt.Sprintf("%s%s %s\n", cursor, check, it.Title())
+			
+			s += itemStyle.Render(fmt.Sprintf("%s%s %s", cursor, check, it.Title())) + "\n"
 		}
 
 		s += HelpStyle.Render("\n↑/↓ pour naviguer • espace pour sélectionner • Entrée pour installer • q pour quitter")
