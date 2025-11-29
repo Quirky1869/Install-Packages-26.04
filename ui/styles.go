@@ -2,7 +2,7 @@ package ui
 
 import "github.com/charmbracelet/lipgloss"
 
-var colorHighlight = lipgloss.Color("#6e4dd1")
+var colorHighlight = lipgloss.Color("#7D56F4")
 
 var (
 	colorPrimary = lipgloss.Color("#7D56F4")

@@ -112,7 +112,7 @@ func main() {
 	}
 
 	m := ui.NewModel(items)
-	p := tea.NewProgram(m)
+	p := tea.NewProgram(m, tea.WithAltScreen())
 
 	if err := p.Start(); err != nil {
 		log.Fatalf("Erreur au lancement de l'app: %v", err)

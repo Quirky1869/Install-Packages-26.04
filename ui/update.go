@@ -13,8 +13,9 @@ import (
 )
 
 type (
-	outputMsg string
-	tickMsg   time.Time
+	outputMsg     string
+	tickMsg       time.Time
+	finalPauseMsg struct{}
 )
 
 func getSelectedItems(m Model) []string {
@@ -122,6 +123,15 @@ func openLogCmd(path string) tea.Cmd {
 	}
 }
 
+func clearScreen() tea.Cmd {
+	return func() tea.Msg {
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		_ = cmd.Run()
+		return nil
+	}
+}
+
 func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 
@@ -142,21 +152,24 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 			itemName := string(selectedItem)
 
 			if strings.HasPrefix(itemName, "Tout") {
-				allSelected := false
-				for _, v := range m.selected {
-					if !v {
-						allSelected = true
+				targetState := false
+				
+				for app := range m.scriptMap {
+					if !m.selected[app] { 
+						targetState = true
 						break
 					}
 				}
 
 				for app := range m.scriptMap {
 					if !strings.HasPrefix(app, "Tout") {
-						m.selected[app] = allSelected
+						m.selected[app] = targetState
 					}
 				}
 
-				if allSelected {
+				m.selected[itemName] = targetState
+
+				if targetState {
 					m.output = "Tous les paquets sélectionnés."
 				} else {
 					m.output = "Tous les paquets désélectionnés."
@@ -200,7 +213,7 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 			currentAppName := selectedItems[0]
 			m.output = fmt.Sprintf("Démarrage de l'installation : %s\n\n", currentAppName)
 
-			return m, tea.Batch(progressCmd, runNextScript(m))
+			return m, tea.Batch(clearScreen(), progressCmd, runNextScript(m))
 
 		case "q", "ctrl+c":
 			return m, tea.Quit
@@ -216,6 +229,14 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tickMsg:
 		return m, tick()
 
+	case finalPauseMsg:
+		trailer := fmt.Sprintf("==== Fin du run : %s ====\n\n", time.Now().Format(time.RFC3339))
+		_ = appendLog(m.logPath, trailer)
+
+		m.state = "done"
+		m.output = "INSTALLATION TERMINEE !"
+		return m, nil
+
 	case outputMsg:
 		m.currentIdx++
 
@@ -223,22 +244,22 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 		selectedCount := len(selectedItems)
 
 		var statusMsg string
-		previousApp := selectedItems[m.currentIdx-1]
-		
-		if strings.Contains(string(msg), "Erreur lors de") {
-		    statusMsg = fmt.Sprintf("Installation de %s terminée avec des erreurs.", previousApp)
-		} else {
-		    statusMsg = fmt.Sprintf("Installation de %s terminée avec succès.", previousApp)
+		if m.currentIdx > 0 && m.currentIdx <= selectedCount {
+			previousApp := selectedItems[m.currentIdx-1]
+			if strings.Contains(string(msg), "Erreur lors de") {
+				statusMsg = fmt.Sprintf("Installation de %s terminée avec des erreurs.", previousApp)
+			} else {
+				statusMsg = fmt.Sprintf("Installation de %s terminée avec succès.", previousApp)
+			}
+			m.output = statusMsg
 		}
 
-		m.output = statusMsg
-
-		progress := float64(m.currentIdx) / float64(selectedCount)
-		if progress > 1.0 {
-			progress = 1.0
+		progressPct := float64(m.currentIdx) / float64(selectedCount)
+		if progressPct > 1.0 {
+			progressPct = 1.0
 		}
 
-		cmd := m.progress.SetPercent(progress)
+		cmd := m.progress.SetPercent(progressPct)
 
 		if m.currentIdx < selectedCount {
 			currentAppName := selectedItems[m.currentIdx]
@@ -248,12 +269,12 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Batch(cmd, runNextScript(m))
 		}
 
-		trailer := fmt.Sprintf("==== Fin du run : %s ====\n\n", time.Now().Format(time.RFC3339))
-		_ = appendLog(m.logPath, trailer)
+		waitCmd := func() tea.Msg {
+			time.Sleep(time.Second * 1)
+			return finalPauseMsg{}
+		}
 
-		m.state = "done"
-		m.output = "INSTALLATION TERMINEE !"
-		return m, cmd
+		return m, tea.Batch(cmd, waitCmd)
 	}
 
 	return m, nil
@@ -285,7 +306,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			case "q", "enter":
 				return m, tea.Quit
 			case "l":
-				return m, tea.Batch(tea.Quit, openLogCmd(m.logPath))
+				return m, tea.Batch(tea.Quit, clearScreen(), openLogCmd(m.logPath))
 			}
 		}
 	case "log":
