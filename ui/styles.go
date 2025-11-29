@@ -6,7 +6,7 @@ var colorHighlight = lipgloss.Color("#7D56F4")
 
 var (
 	colorPrimary = lipgloss.Color("#7D56F4")
-	colorSelected = lipgloss.Color("#FFB86C")
+	// colorSelected = lipgloss.Color("#FFB86C")
 	colorText     = lipgloss.Color("#E5E5E5")
 
 	TitleStyle = lipgloss.NewStyle().
@@ -25,6 +25,10 @@ var (
 
 	HelpStyle = lipgloss.NewStyle().
 			Foreground(lipgloss.Color("#666666")).
+			MarginTop(1)
+
+	LogoffStyle = lipgloss.NewStyle().
+			Foreground(colorPrimary).
 			MarginTop(1)
 
 	BorderStyle = lipgloss.NewStyle().

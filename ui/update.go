@@ -132,6 +132,20 @@ func clearScreen() tea.Cmd {
 	}
 }
 
+func logoffCmd() tea.Cmd {
+	return func() tea.Msg {
+		path := "scripts/install_logoff.sh" 
+		
+		cmd := exec.Command("bash", path)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		
+		_ = cmd.Run() 
+
+		return tea.Quit 
+	}
+}
+
 func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 
@@ -307,8 +321,14 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, tea.Quit
 			case "l":
 				return m, tea.Batch(tea.Quit, clearScreen(), openLogCmd(m.logPath))
+			
+			case "y":
+				return m, tea.Batch(clearScreen(), logoffCmd())
+			case "n":
+				return m, tea.Quit
 			}
 		}
+
 	case "log":
 		if keyMsg, ok := msg.(tea.KeyMsg); ok {
 			switch keyMsg.String() {

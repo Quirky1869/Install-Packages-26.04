@@ -24,13 +24,14 @@ func (m Model) View() string {
 		))
 
 	case "done":
-		return BorderStyle.Render(fmt.Sprintf(
-			"%s\n\n%s\n\n%s\n\n%s",
-			TitleStyle.Render("Résultat de l’installation"),
-			m.output,
-			HelpStyle.Render("INSTALLATION TERMINEE ! Appuyez sur q ou Entrée pour quitter."),
-			HelpStyle.Render("Appuyez sur 'l' pour ouvrir le fichier de log."),
-		))
+        return BorderStyle.Render(fmt.Sprintf(
+            "%s\n\n%s\n\n%s\n%s\n%s",
+            TitleStyle.Render("Résultat de l’installation"),
+            m.output,
+            LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
+            HelpStyle.Render("Appuyez sur q ou Entrée pour quitter."),
+            HelpStyle.Render("Appuyez sur 'l' pour ouvrir le fichier de log."),
+        ))
 
 	case "log":
 		return BorderStyle.Render(fmt.Sprintf(
