@@ -134,42 +134,61 @@ func clearScreen() tea.Cmd {
 
 func logoffCmd() tea.Cmd {
 	return func() tea.Msg {
-		path := "scripts/install_logoff.sh" 
-		
+		path := "scripts/install_logoff.sh"
+
 		cmd := exec.Command("bash", path)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
-		
-		_ = cmd.Run() 
 
-		return tea.Quit 
+		_ = cmd.Run()
+
+		return tea.Quit
 	}
 }
 
 func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
-	switch msg := msg.(type) {
+	var cmd tea.Cmd
 
+	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
 
 		case "up", "k":
-			m.list.CursorUp()
+			if m.cursor > 0 {
+				m.cursor--
+			}
 			return m, nil
 
 		case "down", "j":
-			m.list.CursorDown()
+			start, end := m.paginator.GetSliceBounds(len(m.items))
+			itemsOnPage := m.items[start:end]
+
+			if m.cursor < len(itemsOnPage)-1 {
+				m.cursor++
+			}
+			return m, nil
+
+		case "h", "left":
+			m.paginator.PrevPage()
+			m.cursor = 0
+			return m, nil
+
+		case "l", "right":
+			m.paginator.NextPage()
+			m.cursor = 0
 			return m, nil
 
 		case " ":
-			current := m.list.Index()
-			selectedItem := m.list.Items()[current].(listItem)
-			itemName := string(selectedItem)
+			start, _ := m.paginator.GetSliceBounds(len(m.items))
+			globalIndex := start + m.cursor
+
+			itemName := m.items[globalIndex]
 
 			if strings.HasPrefix(itemName, "Tout") {
 				targetState := false
-				
+
 				for app := range m.scriptMap {
-					if !m.selected[app] { 
+					if !m.selected[app] {
 						targetState = true
 						break
 					}
@@ -233,7 +252,9 @@ func (m Model) updateList(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Quit
 		}
 	}
-	return m, nil
+
+	m.paginator, cmd = m.paginator.Update(msg)
+	return m, cmd
 }
 
 func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -321,7 +342,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, tea.Quit
 			case "l":
 				return m, tea.Batch(tea.Quit, clearScreen(), openLogCmd(m.logPath))
-			
+
 			case "y":
 				return m, tea.Batch(clearScreen(), logoffCmd())
 			case "n":

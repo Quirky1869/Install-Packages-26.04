@@ -1,53 +1,50 @@
 package ui
 
 import (
-	"github.com/charmbracelet/bubbles/list"
+	"github.com/charmbracelet/bubbles/paginator"
 	"github.com/charmbracelet/bubbles/progress"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 )
 
+const itemsPerPage = 25
+
 type Model struct {
-	list        list.Model
-	selected    map[string]bool
-	scriptMap   map[string]string
-	progress    progress.Model
-	output      string
-	state       string
-	currentIdx  int
-	logPath     string
-	width       int
-	height      int
+	items      []string
+	cursor     int
+	paginator  paginator.Model
+	selected   map[string]bool
+	scriptMap  map[string]string
+	progress   progress.Model
+	output     string
+	state      string
+	currentIdx int
+	logPath    string
+	width      int
+	height     int
 }
 
 func NewModel(items []string) Model {
-	var listItems []list.Item
-	for _, i := range items {
-		listItems = append(listItems, listItem(i))
-	}
-
-	l := list.New(listItems, list.NewDefaultDelegate(), 40, 10)
-	l.Title = "Sélectionnez les paquets à installer"
-	l.SetShowHelp(false)
-	l.SetFilteringEnabled(false)
-	l.DisableQuitKeybindings()
+	p := paginator.New()
+	p.Type = paginator.Dots
+	p.PerPage = itemsPerPage
+	p.ActiveDot = lipgloss.NewStyle().Foreground(colorPrimary).Render("•")
+	p.InactiveDot = lipgloss.NewStyle().Foreground(lipgloss.Color("#666666")).Render("•")
+	p.SetTotalPages(len(items))
 
 	defaultLogPath := "/var/log/Install-Packages-26.04.log"
 
 	return Model{
-		list:        l,
-		selected:    make(map[string]bool),
-		progress:    progress.New(progress.WithDefaultGradient()),
-		scriptMap:   getScriptMap(),
-		state:       "list",
-		logPath:     defaultLogPath,
+		items:     items,
+		cursor:    0,
+		paginator: p,
+		selected:  make(map[string]bool),
+		progress:  progress.New(progress.WithDefaultGradient()),
+		scriptMap: getScriptMap(),
+		state:     "list",
+		logPath:   defaultLogPath,
 	}
 }
-
-type listItem string
-
-func (i listItem) Title() string       { return string(i) }
-func (i listItem) Description() string { return "" }
-func (i listItem) FilterValue() string { return string(i) }
 
 func (m Model) Init() tea.Cmd {
 	return nil

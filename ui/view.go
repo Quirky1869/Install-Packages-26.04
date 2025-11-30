@@ -20,18 +20,18 @@ func (m Model) View() string {
 			TitleStyle.Render("Installation en cours..."),
 			m.progress.View(),
 			m.output,
-			HelpStyle.Render("Installation en cours... (Appuyez sur 'q' pour quitter à tout moment.)"),
+			HelpStyle.Render("Installation en cours..."),
 		))
 
 	case "done":
-        return BorderStyle.Render(fmt.Sprintf(
-            "%s\n\n%s\n\n%s\n%s\n%s",
-            TitleStyle.Render("Résultat de l’installation"),
-            m.output,
-            LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
-            HelpStyle.Render("Appuyez sur q ou Entrée pour quitter."),
-            HelpStyle.Render("Appuyez sur 'l' pour ouvrir le fichier de log."),
-        ))
+		return BorderStyle.Render(fmt.Sprintf(
+			"%s\n\n%s\n\n%s\n%s\n%s",
+			TitleStyle.Render("Résultat de l’installation"),
+			m.output,
+			LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
+			HelpStyle.Render("Appuyez sur q ou Entrée pour quitter."),
+			HelpStyle.Render("Appuyez sur 'l' pour ouvrir le fichier de log."),
+		))
 
 	case "log":
 		return BorderStyle.Render(fmt.Sprintf(
@@ -42,27 +42,31 @@ func (m Model) View() string {
 		))
 
 	default:
-		s := TitleStyle.Render(m.list.Title) + "\n\n"
+		s := TitleStyle.Render("Sélectionnez les paquets à installer") + "\n\n"
 
-		for i, li := range m.list.Items() {
-			it := li.(listItem)
+		start, end := m.paginator.GetSliceBounds(len(m.items))
+		itemsOnPage := m.items[start:end]
+
+		for i, item := range itemsOnPage {
 			check := "[ ]"
-			if _, ok := m.selected[it.Title()]; ok && m.selected[it.Title()] {
+			if _, ok := m.selected[item]; ok && m.selected[item] {
 				check = "[x]"
 			}
 
-			cursor := "  "
+			cursor := "  "
 			itemStyle := ItemStyle
 
-			if i == m.list.Index() {
+			if i == m.cursor {
 				cursor = "> "
 				itemStyle = SelectedItemStyle
 			}
 
-			s += itemStyle.Render(fmt.Sprintf("%s%s %s", cursor, check, it.Title())) + "\n"
+			s += itemStyle.Render(fmt.Sprintf("%s%s %s", cursor, check, item)) + "\n"
 		}
 
-		s += HelpStyle.Render("\n↑/↓ pour naviguer • espace pour sélectionner • Entrée pour installer • q pour quitter")
+		s += "\n" + m.paginator.View() + "\n"
+
+		s += HelpStyle.Render("\n↑/↓ pour naviguer • ←/→ pour changer de page • espace pour sélectionner • Entrée pour installer • q pour quitter")
 		return BorderStyle.Render(s)
 	}
 }
