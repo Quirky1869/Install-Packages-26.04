@@ -358,3 +358,21 @@
   Output = ""
   Tag = ["scp"]
   command = "scp <fichier-a-envoyer> <id-distant>@<ip-distante>:</home/nathan - chemin distant>"
+
+[[Snippets]]
+  Description = "rsync, permet de copier plusieurs fichiers ou dossiers avec une exclusion"
+  Output = ""
+  Tag = ["rsync"]
+  command = "rsync -av --exclude '<fichier-ou-dossier-a-exclure>' <fichier-ou-dossier-a-copier> <destination>"
+
+[[Snippets]]
+  Description = "rsync, permet de copier plusieurs fichiers ou dossiers avec plusieurs exclusion"
+  Output = ""
+  Tag = ["rsync"]
+  command = "rsync -av --exclude '<fichier-ou-dossier-a-exclure>' --exclude '<deuxieme-fichier-ou-dossier-a-exclure>' <fichier-ou-dossier-a-copier-comme-.> <destination>"
+
+[[Snippets]]
+  Description = "du, permet d'avoir la taille d'un dossier"
+  Output = ""
+  Tag = ["du"]
+  command = "du -sh <emplacement>"
