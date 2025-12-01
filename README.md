@@ -108,7 +108,7 @@ go version
 
 ## Releases
 
-Des [realeases](https://github.com/Quirky1869/Install-Packages-26.04/releases) du projet sont disponibles  
+Des [releases](https://github.com/Quirky1869/Install-Packages-26.04/releases) du projet sont disponibles  
 Ils comportent uniquement le binaire, le dossier "scripts" et le "run.sh"
 
 ## Astuces
