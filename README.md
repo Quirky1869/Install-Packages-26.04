@@ -108,14 +108,14 @@ go version
 
 ## Releases
 
-Les realeases du projet sont disponibles [ici](https://github.com/Quirky1869/Install-Packages-26.04/releases)  
+Des [realeases](https://github.com/Quirky1869/Install-Packages-26.04/releases) du projet sont disponibles  
 Ils comportent uniquement le binaire, le dossier "scripts" et le "run.sh"
 
 ## Astuces
 > [!TIP]
 > - Appuyez sur Espace pour sélectionner/désélectionner un paquet.  
 > - Appuyez sur Entrée pour lancer les installations.  
-> - Appuyez sur q pour quitter à tout moment.  
+> - A la fin de l'installation vous pouvez fermer la session en cliquant sur 'y'.  
 
 ## Technologies utilisées  
 
