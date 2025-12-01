@@ -116,6 +116,7 @@ Ils comportent uniquement le binaire, le dossier "scripts" et le "run.sh"
 > - Appuyez sur Espace pour sélectionner/désélectionner un paquet.  
 > - Appuyez sur Entrée pour lancer les installations.  
 > - A la fin de l'installation vous pouvez fermer la session en cliquant sur 'y'.  
+> - Appuyer sur ←/→ pour naviguer entre les pages
 
 ## Technologies utilisées  
 
