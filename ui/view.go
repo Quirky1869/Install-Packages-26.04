@@ -1,9 +1,12 @@
 package ui
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/charmbracelet/lipgloss"
+)
 
 func (m Model) View() string {
-
 	contentWidth := m.width - BorderStyle.GetHorizontalFrameSize()
 
 	if m.width > 0 && contentWidth > 0 {
@@ -12,10 +15,12 @@ func (m Model) View() string {
 		return "Initialisation de la TUI..."
 	}
 
+	var content string
+
 	switch m.state {
 
 	case "install":
-		return BorderStyle.Render(fmt.Sprintf(
+		content = BorderStyle.Render(fmt.Sprintf(
 			"%s\n\n%s\n\n%s\n\n%s",
 			TitleStyle.Render("Installation en cours..."),
 			m.progress.View(),
@@ -24,17 +29,18 @@ func (m Model) View() string {
 		))
 
 	case "done":
-		return BorderStyle.Render(fmt.Sprintf(
+		content = BorderStyle.Render(fmt.Sprintf(
 			"%s\n\n%s\n\n%s\n%s\n%s",
 			TitleStyle.Render("Résultat de l’installation"),
 			m.output,
-			LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
+LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
 			HelpStyle.Render("Appuyez sur q ou Entrée pour quitter."),
 			HelpStyle.Render("Appuyez sur 'l' pour ouvrir le fichier de log."),
+			
 		))
 
 	case "log":
-		return BorderStyle.Render(fmt.Sprintf(
+		content = BorderStyle.Render(fmt.Sprintf(
 			"%s\n\n%s\n\n%s",
 			TitleStyle.Render("Logs d'installation"),
 			m.output,
@@ -53,7 +59,7 @@ func (m Model) View() string {
 				check = "[x]"
 			}
 
-			cursor := "  "
+			cursor := "  "
 			itemStyle := ItemStyle
 
 			if i == m.cursor {
@@ -66,7 +72,15 @@ func (m Model) View() string {
 
 		s += "\n" + m.paginator.View() + "\n"
 
-		s += HelpStyle.Render("\n↑/↓ pour naviguer • ←/→ pour changer de page • espace pour sélectionner • Entrée pour installer • q pour quitter")
-		return BorderStyle.Render(s)
+		s += HelpStyle.Render("\n↑/↓ pour naviguer •  ←/→ pour changer de page • espace pour sélectionner • Entrée pour installer • q pour quitter")
+		content = BorderStyle.Render(s)
 	}
+
+	return lipgloss.Place(
+		m.width,
+		m.height,
+		lipgloss.Center,
+		lipgloss.Center,
+		content,
+	)
 }

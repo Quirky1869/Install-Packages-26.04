@@ -305,7 +305,7 @@ func (m Model) updateInstall(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 
 		waitCmd := func() tea.Msg {
-			time.Sleep(time.Second * 1)
+			time.Sleep(time.Millisecond * 1500)
 			return finalPauseMsg{}
 		}
 
