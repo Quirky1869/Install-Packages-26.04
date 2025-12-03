@@ -7,7 +7,7 @@
 ![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)
 [![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)
 [![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)
-[![Latest Version](https://img.shields.io/github/v/release/Quirky1869/cyberTools)](https://github.com/Quirky1869/cyberTools/releases)
+[![Latest Version](https://img.shields.io/github/v/release/Quirky1869/Install-Packages-26.04)](https://github.com/Quirky1869/Install-Packages-26.04/releases)
 
 ## Résumé
 
