@@ -8,7 +8,7 @@ import (
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"projet-install-packages-26.04/ui"
+	"github.com/quirky1869/install-packages-26.04/ui"
 )
 
 func ensureSudoCached() func() {
