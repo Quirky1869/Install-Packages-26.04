@@ -1,378 +1,401 @@
+[[Snippets]]
+  Description = "netdiscover, permet de découvrir les adresses IP sur un reseau"
+  Output = ""
+  Tag = ["netdiscover"]
+  command = "sudo netdiscover -i <notre-interface(eth0)> -r <ip(192.168.1.0)>"
 
 [[Snippets]]
-  Description = "netdiscover, permet de découvrir les adresses IP sur un reseau"
-  Output = ""
-  Tag = ["netdiscover"]
-  command = "sudo netdiscover -i <notre-interface(eth0)> -r <ip(192.168.1.0)>"
+  Description = "nmap, sniffer les ports d'une ip"
+  Output = ""
+  Tag = ["nmap"]
+  command = "nmap -sT <adresse-ip>/<cidr>"
 
 [[Snippets]]
-  Description = "nmap, sniffer les ports d'une ip"
-  Output = ""
-  Tag = ["nmap"]
-  command = "nmap -sT <adresse-ip>/<cidr>"
+  Description = "nmap, avoir toutes les infos d'une adresse IP"
+  Output = ""
+  Tag = ["nmap"]
+  command = "nmap -A <adresse-ip>"
 
 [[Snippets]]
-  Description = "nmap, avoir toutes les infos d'une adresse IP"
-  Output = ""
-  Tag = ["nmap"]
-  command = "nmap -A <adresse-ip>"
+  Description = "nmap, permet de faire un scan discret -sS et de détecter la version des services -sV"
+  Output = ""
+  Tag = ["nmap"]
+  command = "sudo nmap -sS -sV <adresse_ip>"
 
 [[Snippets]]
-  Description = "nmap, permet de faire un scan discret -sS et de détecter la version des services -sV"
-  Output = ""
-  Tag = ["nmap"]
-  command = "sudo nmap -sS -sV <adresse_ip>"
+  Description = "nmap, fait un scan classique (non discret)"
+  Output = ""
+  Tag = ["nmap"]
+  command = "nmap -sT <IP(192.168.10.0)>/<CIDR>"
 
 [[Snippets]]
-  Description = "nmap, fait un scan classique (non discret)"
-  Output = ""
-  Tag = ["nmap"]
-  command = "nmap -sT <IP(192.168.10.0)>/<CIDR>"
+  Description = "nmap, list les machines actives sur un réseau sans scanner leurs ports"
+  Output = ""
+  Tag = ["nmap"]
+  command = "nmap -sn <IP(192.168.10.0)>/<CIDR>"
 
 [[Snippets]]
-  Description = "nmap, list les machines actives sur un réseau sans scanner leurs ports"
-  Output = ""
-  Tag = ["nmap"]
-  command = "nmap -sn <IP(192.168.10.0)>/<CIDR>"
+  Description = "nmap, essaye de detecter l'OS"
+  Output = ""
+  Tag = ["nmap"]
+  command = "sudo nmap -O <IP(192.168.10.0)>/<CIDR>"
 
 [[Snippets]]
-  Description = "nmap, essaye de detecter l'OS"
-  Output = ""
-  Tag = ["nmap"]
-  command = "sudo nmap -O <IP(192.168.10.0)>/<CIDR>"
+  Description = "nmap, scan avancé de l’IP cible en forçant le scan des ports, en cherchant les vulnérabilités connues, en identifiant l’OS et les services, et en bypassant la détection d’hôtes, ignore le ping (-Pn)"
+  Output = ""
+  Tag = ["nmap"]
+  command = "nmap -A --script vuln,safe --script-args=unsafe=1 --top-ports <Port(1000)> -Pn <adresse-ip>"
 
 [[Snippets]]
-  Description = "nmap, scan avancé de l’IP cible en forçant le scan des ports, en cherchant les vulnérabilités connues, en identifiant l’OS et les services, et en bypassant la détection d’hôtes, ignore le ping (-Pn)"
-  Output = ""
-  Tag = ["nmap"]
-  command = "nmap -A --script vuln,safe --script-args=unsafe=1 --top-ports <Port(1000)> -Pn <adresse-ip>"
+  Description = "nmap, permet d'identifier le(s) serveurs DHCP"
+  Output = ""
+  Tag = ["nmap"]
+  command = "sudo nmap --script broadcast-dhcp-discover"
 
 [[Snippets]]
-  Description = "nmap, permet d'identifier le(s) serveurs DHCP"
-  Output = ""
-  Tag = ["nmap"]
-  command = "sudo nmap --script broadcast-dhcp-discover"
+  Description = "nbtscan, identifie les machines Windows sur un réseau"
+  Output = ""
+  Tag = ["nbtscan"]
+  command = "nbtscan <IP(192.168.150.1)>/<CIDR>"
 
 [[Snippets]]
-  Description = "nbtscan, identifie les machines Windows sur un réseau"
-  Output = ""
-  Tag = ["nbtscan"]
-  command = "nbtscan <IP(192.168.150.1)>/<CIDR>"
+  Description = "nmap, permet de scanner tous les services sur tout les ports"
+  Output = ""
+  Tag = ["nmap"]
+  command = "nmap -A <IP(192.168.167.131)> -p-"
 
 [[Snippets]]
-  Description = "nmap, permet de scanner tous les services sur tout les ports"
-  Output = ""
-  Tag = ["nmap"]
-  command = "nmap -A <IP(192.168.167.131)> -p-"
+  Description = "nmap, fait un scan UDP sur tout les ports"
+  Output = ""
+  Tag = ["nmap"]
+  command = "sudo nmap -sU <adresse-ip> -p-"
 
 [[Snippets]]
-  Description = "nmap, fait un scan UDP sur tout les ports"
-  Output = ""
-  Tag = ["nmap"]
-  command = "sudo nmap -sU <adresse-ip> -p-"
+  Description = "enum4linux, permet de scanner un hote windows en profondeur (-a)"
+  Output = ""
+  Tag = ["enum4minux"]
+  command = "enum4linux -a <adresse-ip>"
 
 [[Snippets]]
-  Description = "enum4linux, permet de scanner un hote windows en profondeur (-a)"
-  Output = ""
-  Tag = ["enum4minux"]
-  command = "enum4linux -a <adresse-ip>"
+  Description = "dirb, permet de découvrir tout les dossiers d'un site web"
+  Output = ""
+  Tag = ["dirb"]
+  command = "dirb <http-ou-https>://<adresse-ip>"
 
 [[Snippets]]
-  Description = "dirb, permet de découvrir tout les dossiers d'un site web"
-  Output = ""
-  Tag = ["dirb"]
-  command = "dirb <http-ou-https>://<adresse-ip>"
+  Description = "enum4linux, permet d'enumerer les utilisateurs windows via SMB"
+  Output = ""
+  Tag = ["enum4linux"]
+  command = "enum4linux -U <IP>"
 
 [[Snippets]]
-  Description = "enum4linux, permet d'enumerer les utilisateurs windows via SMB"
-  Output = ""
-  Tag = ["enum4linux"]
-  command = "enum4linux -U <IP>"
+  Description = "responder, outil de man-in-the-middle (MITM) utilisé pour capturer des requêtes sur le réseau local (LAN), en particulier celles liées à des services tels que NetBIOS, LLMNR, NBT-NS, et MDNS. Il exploite les vulnérabilités de protocoles non sécurisés pour intercepter des informations sensibles comme des identifiants et mots de passe non chiffrés"
+  Output = ""
+  Tag = ["responder"]
+  command = "sudo responder -I <interface(eth0)> <--lm(permet de downgrade)>"
 
 [[Snippets]]
-  Description = "responder, outil de man-in-the-middle (MITM) utilisé pour capturer des requêtes sur le réseau local (LAN), en particulier celles liées à des services tels que NetBIOS, LLMNR, NBT-NS, et MDNS. Il exploite les vulnérabilités de protocoles non sécurisés pour intercepter des informations sensibles comme des identifiants et mots de passe non chiffrés"
-  Output = ""
-  Tag = ["responder"]
-  command = "sudo responder -I <interface(eth0)> <--lm(permet de downgrade)>"
+  Description = "crackmapexec, permet de récupérer les users en utilisant le service SMB sur une IP"
+  Output = ""
+  Tag = ["crackmapexec"]
+  command = "crackmapexec smb <adresse-ip> --users"
 
 [[Snippets]]
-  Description = "crackmapexec, permet de récupérer les users en utilisant le service SMB sur une IP"
-  Output = ""
-  Tag = ["crackmapexec"]
-  command = "crackmapexec smb <adresse-ip> --users"
+  Description = "crackmapexec, permet de récupérer les partages (repertoire partagee) en utilisant le service SMB sur une IP"
+  Output = ""
+  Tag = ["crackmapexec"]
+  command = "crackmapexec smb <adresse-ip> --shares"
 
 [[Snippets]]
-  Description = "crackmapexec, permet de récupérer les partages (repertoire partagee) en utilisant le service SMB sur une IP"
-  Output = ""
-  Tag = ["crackmapexec"]
-  command = "crackmapexec smb <adresse-ip> --shares"
+  Description = "smbclient.py, permet d'avoir accès au(x) partage(s) sur une adresse IP ; ATTENTION il faut le mdp de l'utilisateur"
+  Output = ""
+  Tag = ["smbclient.py"]
+  command = "python3 smbclient.py <nom-du-domaine(north.sevenkingdoms.local)>/<nom-utilisateur-sam-account-name>@<adresse-ip>"
 
 [[Snippets]]
-  Description = "smbclient.py, permet d'avoir accès au(x) partage(s) sur une adresse IP ; ATTENTION il faut le mdp de l'utilisateur"
-  Output = ""
-  Tag = ["smbclient.py"]
-  command = "python3 smbclient.py <nom-du-domaine(north.sevenkingdoms.local)>/<nom-utilisateur-sam-account-name>@<adresse-ip>"
+  Description = "smbmap, permet d'avoir accès au(x) partage(s) sur une adresse IP ; ATTENTION il faut le mdp de l'utilisateur"
+  Output = ""
+  Tag = ["smbmap"]
+  command = "smbmap -u <nom-utilisateur> -p <mot-de-passe> -H <IP(192.168.86.61)>"
 
 [[Snippets]]
-  Description = "smbmap, permet d'avoir accès au(x) partage(s) sur une adresse IP ; ATTENTION il faut le mdp de l'utilisateur"
-  Output = ""
-  Tag = ["smbmap"]
-  command = "smbmap -u <nom-utilisateur> -p <mot-de-passe> -H <IP(192.168.86.61)>"
+  Description = "bloodhound, permet d'avoir une sortie zip d'un domaine pour bloodhound"
+  Output = ""
+  Tag = ["bloodhound"]
+  command = "bloodhound-python -d <nom-du-domaine> --zip -c All -dc <nom-du-domain-controller> -ns <IP-du-domaine> -u '<user>' -p '<password>'"
 
 [[Snippets]]
-  Description = "bloodhound, permet d'avoir une sortie zip d'un domaine pour bloodhound"
-  Output = ""
-  Tag = ["bloodhound"]
-  command = "bloodhound-python -d <nom-du-domaine> --zip -c All -dc <nom-du-domain-controller> -ns <IP-du-domaine> -u '<user>' -p '<password>'"
+  Description = "proxychains4, permet de dump la base SAM"
+  Output = ""
+  Tag = ["proxychains4"]
+  command = "proxychains4 -q secretsdump.py <domain>/<user>:toto@<IP>"
 
 [[Snippets]]
-  Description = "proxychains4, permet de dump la base SAM"
-  Output = ""
-  Tag = ["proxychains4"]
-  command = "proxychains4 -q secretsdump.py <domain>/<user>:toto@<IP>"
+  Description = "dig, permet de faire un transfert de zone DNS"
+  Output = ""
+  Tag = ["dig"]
+  command = "dig -axfr <nom-de-domaine>@<nom-server>"
 
 [[Snippets]]
-  Description = "dig, permet de faire un transfert de zone DNS"
-  Output = ""
-  Tag = ["dig"]
-  command = "dig -axfr <nom-de-domaine>@<nom-server>"
+  Description = "ldapsearch, permet d'identifier les informations de configuration de base du serveur LDAP (NETLOGON,SYSVOL,IPC$...)"
+  Output = ""
+  Tag = ["ldapsearch"]
+  command = "ldapsearch -x -H ldap://<IP-du-domaine> -s base"
 
 [[Snippets]]
-  Description = "ldapsearch, permet d'identifier les informations de configuration de base du serveur LDAP (NETLOGON,SYSVOL,IPC$...)"
-  Output = ""
-  Tag = ["ldapsearch"]
-  command = "ldapsearch -x -H ldap://<IP-du-domaine> -s base"
+  Description = "mitm6, intercept les communications (MITM) d'un domaine"
+  Output = ""
+  Tag = ["mitm6"]
+  command = "sudo mitm6 -d <nom-du-domaine> -I <Interface(eth0)>"
 
 [[Snippets]]
-  Description = "mitm6, intercept les communications (MITM) d'un domaine"
-  Output = ""
-  Tag = ["mitm6"]
-  command = "sudo mitm6 -d <nom-du-domaine> -I <Interface(eth0)>"
+  Description = "ntlmrelay.py, permet de relayer une authentification NTLM capturée vers un autre service"
+  Output = ""
+  Tag = ["ntlmrelay.py"]
+  command = "ntmlrelayx.py -tf <targets.txt> -smb2support -socks"
 
 [[Snippets]]
-  Description = "ntlmrelay.py, permet de relayer une authentification NTLM capturée vers un autre service"
-  Output = ""
-  Tag = ["ntlmrelay.py"]
-  command = "ntmlrelayx.py -tf <targets.txt> -smb2support -socks"
+  Description = "crackmapexec, permet de faire une attaque PathTheHash ; NTLMV2 est le hash du password du user"
+  Output = ""
+  Tag = ["crackmapexec"]
+  command = "crackmapexec smb <IP> -u '<user>' -H <NTLMV2> --shares"
 
 [[Snippets]]
-  Description = "crackmapexec, permet de faire une attaque PathTheHash ; NTLMV2 est le hash du password du user"
-  Output = ""
-  Tag = ["crackmapexec"]
-  command = "crackmapexec smb <IP> -u '<user>' -H <NTLMV2> --shares"
+  Description = "docker, permet de supprimer toutes les images"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker rmi $(docker images -a -q)"
 
 [[Snippets]]
-  Description = "docker, permet de supprimer toutes les images"
-  Output = ""
-  Tag = ["docker"]
-  command = "docker rmi $(docker images -a -q)"
+  Description = "docker, permet de supprimer tous les volumes"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker volume rm $(docker volume ls -q)"
 
 [[Snippets]]
-  Description = "docker, permet de supprimer tous les volumes"
-  Output = ""
-  Tag = ["docker"]
-  command = "docker volume rm $(docker volume ls -q)"
+  Description = "docker, arreter tout les containers docker"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker stop $(docker ps -q)"
 
 [[Snippets]]
-  Description = "docker, arreter tout les containers docker"
-  Output = ""
-  Tag = ["docker"]
-  command = "docker stop $(docker ps -q)"
+  Description = "docker, permet de supprimer tout les containers docker"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker rm -f $(docker ps -aq)"
 
 [[Snippets]]
-  Description = "docker, permet de supprimer tout les containers docker"
-  Output = ""
-  Tag = ["docker"]
-  command = "docker rm -f $(docker ps -aq)"
+  Description = "xfreerdp, permet de prendre la main en RDP"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp -u:<user> -p:<mdp> -v:<ip>"
 
 [[Snippets]]
-  Description = "xfreerdp, permet de prendre la main en RDP"
-  Output = ""
-  Tag = ["xfreerdp"]
-  command = "xfreerdp -u:<user> -p:<mdp> -v:<ip>"
+  Description = "docker, permet de supprimer toutes les ressources non utilisées"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker system prune -a <-f>"
 
 [[Snippets]]
-  Description = "docker, permet de supprimer toutes les ressources non utilisées"
-  Output = ""
-  Tag = ["docker"]
-  command = "docker system prune -a <-f>"
+  Description = "xfreerdp, AVD2"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp -u:Administrateur -p:Proxit84000* -v:4.212.12.215"
 
 [[Snippets]]
-  Description = "xfreerdp, AVD2"
-  Output = ""
-  Tag = ["xfreerdp"]
-  command = "xfreerdp -u:Administrateur -p:Proxit84000* -v:4.212.12.215"
+  Description = "xfreerdp, AVD1"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp -u:Administrateur -p:Proxit84000* -v:51.11.211.157"
 
 [[Snippets]]
-  Description = "xfreerdp, AVD1"
-  Output = ""
-  Tag = ["xfreerdp"]
-  command = "xfreerdp -u:Administrateur -p:Proxit84000* -v:51.11.211.157"
+  Description = "xfreerdp, AVD3"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp -u:Administrateur -p:Proxit84000* -v:4.178.190.47"
 
 [[Snippets]]
-  Description = "xfreerdp, AVD3"
-  Output = ""
-  Tag = ["xfreerdp"]
-  command = "xfreerdp -u:Administrateur -p:Proxit84000* -v:4.178.190.47"
+  Description = "xfreerdp, OgapConcept"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp -u:Administrateur -p:0G@pConcept84* -v:40.89.131.253"
 
 [[Snippets]]
-  Description = "xfreerdp, OgapConcept"
-  Output = ""
-  Tag = ["xfreerdp"]
-  command = "xfreerdp -u:Administrateur -p:0G@pConcept84* -v:40.89.131.253"
+  Description = "find, chercher un fichier dans tout l'ordinateur"
+  Output = ""
+  Tag = ["find"]
+  command = "sudo find / -type f -name \"<nom-du-fichier>\" 2>/dev/null"
 
 [[Snippets]]
-  Description = "find, chercher un fichier dans tout l'ordinateur"
-  Output = ""
-  Tag = ["find"]
-  command = "sudo find / -type f -name \"<nom-du-fichier>\" 2>/dev/null"
+  Description = "find, chercher un dossier dans tout l'ordinateur"
+  Output = ""
+  Tag = ["find"]
+  command = "sudo find / -type d -name \"<nom-du-dossier>\" 2>/dev/null"
 
 [[Snippets]]
-  Description = "find, chercher un dossier dans tout l'ordinateur"
-  Output = ""
-  Tag = ["find"]
-  command = "sudo find / -type d -name \"<nom-du-dossier>\" 2>/dev/null"
+  Description = "find, chercher un fichier dans tout l'ordinateur, insensible à la casse (qui contient le mot)"
+  Output = ""
+  Tag = ["find"]
+  command = "sudo find / -type f -iname \"*<nom-du-fichier>*\" 2>/dev/null"
 
 [[Snippets]]
-  Description = "find, chercher un fichier dans tout l'ordinateur, insensible à la casse (qui contient le mot)"
-  Output = ""
-  Tag = ["find"]
-  command = "sudo find / -type f -iname \"*<nom-du-fichier>*\" 2>/dev/null"
+  Description = "find, chercher un dossier dans tout l'ordinateur, insensible à la casse (qui contient le mot)"
+  Output = ""
+  Tag = ["find"]
+  command = "sudo find / -type d -iname \"*<nom-du-dossier>*\" 2>/dev/null"
 
 [[Snippets]]
-  Description = "find, chercher un dossier dans tout l'ordinateur, insensible à la casse (qui contient le mot)"
-  Output = ""
-  Tag = ["find"]
-  command = "sudo find / -type d -iname \"*<nom-du-dossier>*\" 2>/dev/null"
+  Description = "xfreerdp, winerl - SRV-APP-WINERL"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp -u:supportproxit -p:L#302196484193ug -v:4.178.153.109"
 
 [[Snippets]]
-  Description = "xfreerdp, winerl - SRV-APP-WINERL"
-  Output = ""
-  Tag = ["xfreerdp"]
-  command = "xfreerdp -u:supportproxit -p:L#302196484193ug -v:4.178.153.109"
+  Description = "xfreerdp, winerl - AVD-WINERL"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp -u:supportproxit -p:L#302196484193ug -v:4.211.105.162"
 
 [[Snippets]]
-  Description = "xfreerdp, winerl - AVD-WINERL"
-  Output = ""
-  Tag = ["xfreerdp"]
-  command = "xfreerdp -u:supportproxit -p:L#302196484193ug -v:4.211.105.162"
+  Description = "docker, ATTENTION !!! permet de nettoyer tout docker"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker system prune -a"
 
 [[Snippets]]
-  Description = "docker, ATTENTION !!! permet de nettoyer tout docker"
-  Output = ""
-  Tag = ["docker"]
-  command = "docker system prune -a"
+  Description = "ffmpeg, concatener 2 audios"
+  Output = ""
+  Tag = ["ffmpeg"]
+  command = "ffmpeg -i <premier-audio.wav> -i <second-audio.wav> -filter_complex \"[0:0][1:0]concat=n=2:v=0:a=1[out]\" -map \"[out]\" output.wav"
 
 [[Snippets]]
-  Description = "ffmpeg, concatener 2 audios"
-  Output = ""
-  Tag = ["ffmpeg"]
-  command = "ffmpeg -i <premier-audio.wav> -i <second-audio.wav> -filter_complex \"[0:0][1:0]concat=n=2:v=0:a=1[out]\" -map \"[out]\" output.wav"
+  Description = "ssh, permet de copier un clé ssh publique spécifique vers un serveur distant"
+  Output = ""
+  Tag = ["ssh"]
+  command = "ssh-copy-id -f -i <ssh-key.pub> <remote-user>@<remote-ip>"
 
 [[Snippets]]
-  Description = "ssh, permet de copier un clé ssh publique spécifique vers un serveur distant"
-  Output = ""
-  Tag = ["ssh"]
-  command = "ssh-copy-id -f -i <ssh-key.pub> <remote-user>@<remote-ip>"
+  Description = "ssh, générer un paire de clé ssh"
+  Output = ""
+  Tag = ["ssh"]
+  command = "ssh-keygen -t <ed25519 ou ecdsa ou rsa> -N \"<passphrase-si vide pas de passphrase>\" -f ~/.ssh/<key-name>"
 
 [[Snippets]]
-  Description = "ssh, générer un paire de clé ssh"
-  Output = ""
-  Tag = ["ssh"]
-  command = "ssh-keygen -t <ed25519 ou ecdsa ou rsa> -N \"<passphrase-si vide pas de passphrase>\" -f ~/.ssh/<key-name>"
+  Description = "ssh, se connecter en ssh à un hôte distant"
+  Output = ""
+  Tag = ["ssh"]
+  command = "ssh <remote-user>@<remote-ip>"
 
 [[Snippets]]
-  Description = "ssh, se connecter en ssh à un hôte distant"
-  Output = ""
-  Tag = ["ssh"]
-  command = "ssh <remote-user>@<remote-ip>"
+  Description = "ffuf, commande pour trouver les sub-domains d'un site web"
+  Output = ""
+  Tag = ["ffuf"]
+  command = "ffuf -w <chemin-word-list.txt> -u <http://planning.htb/> -H \"<Host:FUZZ.planning.htb>\" -fc <301>"
 
 [[Snippets]]
-  Description = "ssh, se connecter a la VM zabbix en ssh"
-  Output = ""
-  Tag = ["ssh"]
-  command = "ssh flex@82.138.92.200 -p 2222"
+  Description = "scp, envoyer fichier via ssh ; ex : scp linpeas.sh admin@10.10.11.68:/home/grafana"
+  Output = ""
+  Tag = ["scp"]
+  command = "scp <fichier-a-envoyer> <user-distant>@<ip-distante>:<chemin-distant>"
 
 [[Snippets]]
-  Description = "PKI, créer une autorité de certification (CA) auto signée, génère clé privé ca.key + certificat ca.crt"
-  Output = ""
-  Tag = ["PKI"]
-  command = "openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -keyout ca.key -out ca.crt -subj \"/CN=www.modelCA.com/O=Model CA LTD./C=FR\" -passout pass:<mot de passe>"
+  Description = "wget, permet de télécharger tout un dossier via wget"
+  Output = ""
+  Tag = ["wget"]
+  command = "wget -r -np -nH --cut-dirs=1 -R \"*index.html*\" <http://192.168.201.33:8090/Image_disque/>"
 
 [[Snippets]]
-  Description = "PKI, lire le contenu du certificat .crt"
-  Output = ""
-  Tag = ["PKI"]
-  command = "openssl x509 -in <ca.crt> -text -noout"
+  Description = "repository, liste tout les repository present sur la machine"
+  Output = ""
+  Tag = ["repository"]
+  command = "grep -r ^ /etc/apt/sources.list /etc/apt/sources.list.d/"
 
 [[Snippets]]
-  Description = "PKI, lire le contenu de la clé privée .key"
-  Output = ""
-  Tag = ["PKI"]
-  command = "openssl rsa -in <ca.key> -text -noout"
+  Description = "ssh, se connecter a la VM zabbix en ssh"
+  Output = ""
+  Tag = ["ssh"]
+  command = "ssh flex@82.138.92.200 -p 2222"
 
 [[Snippets]]
-  Description = "PKi, on créer un .csr ; demande de signature de certificat"
-  Output = ""
-  Tag = ["PKI"]
-  command = "openssl req -newkey rsa:2048 -sha256 -keyout <server.key> -out <server.csr> -subj \"</CN=www.michael.com/O=Bank32 Inc./C=US>\" -passout pass:<mot de passe>"
+  Description = "PKI, créer une autorité de certification (CA) auto signée, génère clé privé ca.key + certificat ca.crt"
+  Output = ""
+  Tag = ["PKI"]
+  command = "openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -keyout ca.key -out ca.crt -subj \"/CN=www.modelCA.com/O=Model CA LTD./C=FR\" -passout pass:<mot de passe>"
 
 [[Snippets]]
-  Description = "PKI, on examine le contenu du .csr"
-  Output = ""
-  Tag = ["PKI"]
-  command = "openssl req -in <server.csr> -text -noout"
+  Description = "PKI, lire le contenu du certificat .crt"
+  Output = ""
+  Tag = ["PKI"]
+  command = "openssl x509 -in <ca.crt> -text -noout"
 
 [[Snippets]]
-  Description = "PKI, générer un .csr avec sa clé (.key) avec des noms alternatifs"
-  Output = ""
-  Tag = ["PKI"]
-  command = "openssl req -newkey rsa:2048 -sha256 -keyout <server.key> -out <server.csr> -subj \"</CN=www.michael.com/O=Bank32 Inc./C=FR>\" -passout pass:<mot de passe> -addext \"subjectAltName = <DNS:www.michael.com, DNS:www.michaelA.com, DNS:www.michaelB.com>\""
+  Description = "PKI, lire le contenu de la clé privée .key"
+  Output = ""
+  Tag = ["PKI"]
+  command = "openssl rsa -in <ca.key> -text -noout"
 
 [[Snippets]]
-  Description = "PKI, on signe une demande de certificat (CSR) avec une autorité de certification locale (CA)"
-  Output = ""
-  Tag = ["PKI"]
-  command = "openssl ca -config openssl.cnf -policy policy_anything -md sha256 -days 3650 -in <server.csr> -out <server.crt> -batch -cert <ca.crt> -keyfile <ca.key>"
+  Description = "PKi, on créer un .csr ; demande de signature de certificat"
+  Output = ""
+  Tag = ["PKI"]
+  command = "openssl req -newkey rsa:2048 -sha256 -keyout <server.key> -out <server.csr> -subj \"</CN=www.michael.com/O=Bank32 Inc./C=US>\" -passout pass:<mot de passe>"
 
 [[Snippets]]
-  Description = "python3, venv, création d'un venv en python"
-  Output = ""
-  Tag = ["python3,venv"]
-  command = "python3 -m venv <nom-de-notre-venv>"
+  Description = "PKI, on examine le contenu du .csr"
+  Output = ""
+  Tag = ["PKI"]
+  command = "openssl req -in <server.csr> -text -noout"
 
 [[Snippets]]
-  Description = "python3, venv, rentrer dans le venv (ne peux pas etre executer depuis pet)"
-  Output = ""
-  Tag = ["python3,", "venv"]
-  command = "source <nom-de-notre-venv>/bin/activate"
+  Description = "PKI, générer un .csr avec sa clé (.key) avec des noms alternatifs"
+  Output = ""
+  Tag = ["PKI"]
+  command = "openssl req -newkey rsa:2048 -sha256 -keyout <server.key> -out <server.csr> -subj \"</CN=www.michael.com/O=Bank32 Inc./C=FR>\" -passout pass:<mot de passe> -addext \"subjectAltName = <DNS:www.michael.com, DNS:www.michaelA.com, DNS:www.michaelB.com>\""
 
 [[Snippets]]
-  Description = "python3, venv, sortir du venv (ne peux pas etre executer depuis pet)"
-  Output = ""
-  Tag = ["python3,", "venv"]
-  command = "deactivate"
+  Description = "PKI, on signe une demande de certificat (CSR) avec une autorité de certification locale (CA)"
+  Output = ""
+  Tag = ["PKI"]
+  command = "openssl ca -config openssl.cnf -policy policy_anything -md sha256 -days 3650 -in <server.csr> -out <server.crt> -batch -cert <ca.crt> -keyfile <ca.key>"
 
 [[Snippets]]
-  Description = "scp, permet d'envoyer un fichier via ssh"
-  Output = ""
-  Tag = ["scp"]
-  command = "scp <fichier-a-envoyer> <id-distant>@<ip-distante>:</home/nathan - chemin distant>"
+  Description = "python3, venv, création d'un venv en python"
+  Output = ""
+  Tag = ["python3,venv"]
+  command = "python3 -m venv <nom-de-notre-venv>"
 
 [[Snippets]]
-  Description = "rsync, permet de copier plusieurs fichiers ou dossiers avec une exclusion"
-  Output = ""
-  Tag = ["rsync"]
-  command = "rsync -av --exclude '<fichier-ou-dossier-a-exclure>' <fichier-ou-dossier-a-copier> <destination>"
+  Description = "python3, venv, rentrer dans le venv (ne peux pas etre executer depuis pet)"
+  Output = ""
+  Tag = ["python3,", "venv"]
+  command = "source <nom-de-notre-venv>/bin/activate"
 
 [[Snippets]]
-  Description = "rsync, permet de copier plusieurs fichiers ou dossiers avec plusieurs exclusion"
-  Output = ""
-  Tag = ["rsync"]
-  command = "rsync -av --exclude '<fichier-ou-dossier-a-exclure>' --exclude '<deuxieme-fichier-ou-dossier-a-exclure>' <fichier-ou-dossier-a-copier-comme-.> <destination>"
+  Description = "python3, venv, sortir du venv (ne peux pas etre executer depuis pet)"
+  Output = ""
+  Tag = ["python3,", "venv"]
+  command = "deactivate"
 
 [[Snippets]]
-  Description = "du, permet d'avoir la taille d'un dossier"
-  Output = ""
-  Tag = ["du"]
-  command = "du -sh <emplacement>"
+  Description = "scp, permet d'envoyer un fichier via ssh"
+  Output = ""
+  Tag = ["scp"]
+  command = "scp <fichier-a-envoyer> <id-distant>@<ip-distante>:</home/nathan - chemin distant>"
+
+[[Snippets]]
+  Description = "rsync, permet de copier plusieurs fichiers ou dossiers avec une exclusion"
+  Output = ""
+  Tag = ["rsync"]
+  command = "rsync -av --exclude '<fichier-ou-dossier-a-exclure>' <fichier-ou-dossier-a-copier> <destination>"
+
+[[Snippets]]
+  Description = "rsync, permet de copier plusieurs fichiers ou dossiers avec plusieurs exclusion"
+  Output = ""
+  Tag = ["rsync"]
+  command = "rsync -av --exclude '<fichier-ou-dossier-a-exclure>' --exclude '<deuxieme-fichier-ou-dossier-a-exclure>' <fichier-ou-dossier-a-copier-comme-.> <destination>"
+
+[[Snippets]]
+  Description = "du, permet d'avoir la taille d'un dossier"
+  Output = ""
+  Tag = ["du"]
+  command = "du -sh <emplacement>"
