@@ -399,3 +399,9 @@ Description = "du, permet d'avoir la taille d'un dossier"
 Output = ""
 Tag = ["du"]
 command = "du -sh <emplacement>"
+
+[[Snippets]]
+  Description = "git, permet de mettre un tag apres un push et de mettre a jour le proxy Go"
+  Output = ""
+  Tag = ["git"]
+  command = "git tag <v0.9> && git push origin <v0.9> && GOPROXY=\"https://proxy.golang.org\" go list -m github.com/<quirky1869>/<install-packages-26.04@latest>"
