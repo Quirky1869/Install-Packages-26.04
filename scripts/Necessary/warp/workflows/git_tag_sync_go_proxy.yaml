@@ -6,7 +6,7 @@ arguments:
   - name: arg_1
     arg_type: Text
     description: ~
-    default_value: update version v
+    default_value: update version tag v0.0.9
   - name: arg_2
     arg_type: Text
     description: ~
@@ -14,11 +14,11 @@ arguments:
   - name: arg_3
     arg_type: Text
     description: ~
-    default_value: v0.9
+    default_value: v0.0.9
   - name: arg_4
     arg_type: Text
     description: ~
-    default_value: github.com/quirky1869/install-packages-26.04@latest
+    default_value: github.com/quirky1869/install-packages-26.04@v0.0.9
 tags: []
 source_url: https://github.com/Quirky1869
 author: Quirky
