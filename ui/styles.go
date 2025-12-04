@@ -7,7 +7,7 @@ var colorHighlight = lipgloss.Color("#7D56F4")
 var (
 	colorPrimary = lipgloss.Color("#7D56F4")
 	// colorSelected = lipgloss.Color("#FFB86C")
-	colorText     = lipgloss.Color("#E5E5E5")
+    colorText = lipgloss.Color("#E5E5E5")
 
 	TitleStyle = lipgloss.NewStyle().
 			Bold(true).

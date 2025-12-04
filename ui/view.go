@@ -72,7 +72,7 @@ LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
 
 		s += "\n" + m.paginator.View() + "\n"
 
-		s += HelpStyle.Render("\n↑/↓ pour naviguer •  ←/→ pour changer de page • espace pour sélectionner • Entrée pour installer • q pour quitter")
+		s += HelpStyle.Render("\n↑/↓ pour naviguer • ←/→ pour changer de page • espace pour sélectionner • Entrée pour installer • q pour quitter")
 		content = BorderStyle.Render(s)
 	}
 
