@@ -37,4 +37,5 @@ fi
 cd "$TARGET_DIR" || { echo "Erreur: impossible d'accéder à $TARGET_DIR"; exit 1; }
 echo "Lancement de ./install ..."
 
+# Lance la TUI 
 ./install
