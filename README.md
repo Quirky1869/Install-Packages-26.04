@@ -5,7 +5,7 @@
 [![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-E95420?style=plastic&logo=ubuntu)](https://www.ubuntu-fr.org/download/)
 ![Static Badge](https://img.shields.io/badge/Install-Packages_26.04-cyan?style=plastic)
 ![Static Badge](https://img.shields.io/badge/License-MIT-8A2BE2?style=plastic)
-[![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=plastic&logo=go)](https://golang.org/)
+[![Go](https://img.shields.io/badge/Go-1.24+-00ADD8?style=plastic&logo=go)](https://golang.org/)
 [![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)
 [![Latest Version](https://img.shields.io/github/v/release/Quirky1869/Install-Packages-26.04)](https://github.com/Quirky1869/Install-Packages-26.04/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/quirky1869/install-packages-26.04)](https://goreportcard.com/report/github.com/quirky1869/install-packages-26.04)
