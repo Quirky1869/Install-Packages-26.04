@@ -430,3 +430,9 @@
   Output = ""
   Tag = ["git"]
   command = "git revert <id du comit faire un \"git log\">"
+
+[[Snippets]]
+  Description = "git, permet de renommer une branche et de la mettre a jour sur GitHub"
+  Output = ""
+  Tag = ["git"]
+  command = "git branch -m <titre-branche-actuel> <feature-nouveau-titre> ; git push origin --delete <titre-branche-actuel> ; git push -u origin <feature-nouveau-titre>"

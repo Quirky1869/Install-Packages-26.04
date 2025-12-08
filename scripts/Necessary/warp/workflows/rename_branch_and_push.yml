@@ -1,0 +1,18 @@
+---
+name: rename_branch_and_push
+command: "git branch -m {{titre-branche-actuel}} {{feature-nouveau-titre}} ; git push origin --delete {{titre-branche-actuel}} ; git push -u origin {{feature-nouveau-titre}}"
+description: "Permet de renommer une branche et de la mettre a jour sur GitHub "
+arguments:
+  - name: titre-branche-actuel
+    arg_type: Text
+    description: ~
+    default_value: ~
+  - name: feature-nouveau-titre
+    arg_type: Text
+    description: ~
+    default_value: ~
+tags: []
+source_url: ~
+author: ~
+author_url: ~
+shells: []
