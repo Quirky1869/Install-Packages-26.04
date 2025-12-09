@@ -33,10 +33,9 @@ func (m Model) View() string {
 			"%s\n\n%s\n\n%s\n%s\n%s",
 			TitleStyle.Render("Résultat de l’installation"),
 			m.output,
-LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
+			LogoffStyle.Render("Voulez-vous vous déconnecter maintenant ? (y/n)"),
 			HelpStyle.Render("Appuyez sur q ou Entrée pour quitter."),
 			HelpStyle.Render("Appuyez sur 'l' pour ouvrir le fichier de log."),
-			
 		))
 
 	case "log":
