@@ -8,7 +8,7 @@
 [![Go](https://img.shields.io/badge/Go-1.24+-00ADD8?style=plastic&logo=go)](https://golang.org/)
 [![Bash](https://img.shields.io/badge/GNU-Bash-4EAA25?style=plastic&logo=gnubash)](https://www.gnu.org/software/bash/)
 [![Latest Version](https://img.shields.io/github/v/release/Quirky1869/Install-Packages-26.04)](https://github.com/Quirky1869/Install-Packages-26.04/releases)
-[![Go Report Card](https://goreportcard.com/badge/github.com/quirky1869/install-packages-26.04)](https://goreportcard.com/report/github.com/quirky1869/install-packages-26.04)
+[![Go Report](https://goreportcard.com/badge/github.com/quirky1869/install-packages-26.04)](https://goreportcard.com/report/github.com/quirky1869/install-packages-26.04)
 [![GitHub Actions](https://github.com/Quirky1869/Install-Packages-26.04/actions/workflows/build-and-tests.yml/badge.svg)](https://github.com/Quirky1869/Install-Packages-26.04/actions/workflows/build-and-tests.yml)
 
 
