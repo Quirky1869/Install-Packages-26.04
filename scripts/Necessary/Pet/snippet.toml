@@ -436,3 +436,9 @@
   Output = ""
   Tag = ["git"]
   command = "git branch -m <titre-branche-actuel> <feature-nouveau-titre> ; git push origin --delete <titre-branche-actuel> ; git push -u origin <feature-nouveau-titre>"
+
+[[Snippets]]
+  Description = "git, supprimer (le suivi) le dossier ou fichier a distance (sur le repo)"
+  Output = ""
+  Tag = ["git"]
+  command = "git rm -r --cached <dossier-ou-fichier>"
