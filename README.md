@@ -43,7 +43,8 @@ Aucun besoin de Go ou de scripts compliqués — tout se lance depuis le termina
 │ ├── install_burpsuite.sh  
 │ └── ***
 ├── run.sh # Script de lancement automatique  
-└── README.md  
+├── README.md  
+└── build.sh # Permet de build le projet
 ```
 
 ## Installation
