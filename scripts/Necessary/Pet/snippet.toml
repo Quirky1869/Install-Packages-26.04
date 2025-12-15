@@ -442,3 +442,9 @@
   Output = ""
   Tag = ["git"]
   command = "git rm -r --cached <dossier-ou-fichier>"
+
+[[Snippets]]
+  Description = "git, permet de changer l'editeur lors d'un 'commit -e'"
+  Output = ""
+  Tag = ["git"]
+  command = "git config --global core.editor <\"micro\">"
