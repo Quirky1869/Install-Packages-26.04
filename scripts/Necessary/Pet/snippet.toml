@@ -423,7 +423,7 @@
   Description = "git, afficher tous les commits"
   Output = ""
   Tag = ["git"]
-  command = "git log <--online>"
+  command = "git log <--oneline>"
 
 [[Snippets]]
   Description = "git, permet de revenir à un ancien commit"
