@@ -25,3 +25,13 @@ fc-cache -fv
 ```
 
 Maintenant les nouvelles fonts "JetBrainsMono" (nerd fonts) devraient être disponible (relancer le terminal au cas où)
+
+## Jiggle / Wiggle
+
+gsettings set org.gnome.shell disable-extension-version-validation true
+
+https://github.com/jeffchannell/jiggle
+https://extensions.gnome.org/extension/3438/jiggle/
+
+https://github.com/mechtifs/wiggle
+https://extensions.gnome.org/extension/6784/wiggle/
