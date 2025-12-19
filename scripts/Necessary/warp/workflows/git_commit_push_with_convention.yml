@@ -1,0 +1,26 @@
+---
+name: Git Commit Push with Convention
+command: "git add {{argument_1}} ; git commit -m '{{argument_2}}' ; git push origin {{argument_3}}"
+description: add commit and push
+arguments:
+  - name: argument_1
+    arg_type: Text
+    description: file1 file2 ...
+    default_value: .
+  - name: argument_2
+    arg_type: Text
+    description: branch
+    default_value: feat(export-data) ':' add scoreboard export button
+  - name: argument_3
+    arg_type: Text
+    description: branch to push
+    default_value: feature/export-data
+tags:
+  - git
+  - commit
+  - push
+  - convention
+source_url: ~
+author: Quirky
+author_url: https://github.com/Quirky1869
+shells: []
