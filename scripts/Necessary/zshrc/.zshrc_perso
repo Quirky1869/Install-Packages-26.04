@@ -92,25 +92,46 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 configure_prompt() {
-    prompt_symbol=🔮
+    prompt_symbol=💀
     folders_count() { echo $(find . -mindepth 1 -maxdepth 1 -type d | wc -l); }
     files_count() { echo $(find . -mindepth 1 -maxdepth 1 -type f | wc -l); }
     symlinks_count() { echo $(find . -mindepth 1 -maxdepth 1 -type l | wc -l); }
-    git_branch() {
-        git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ git🌿{\1}/'
+
+git_prompt_line() {
+        if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+            local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ git༗{\1}/')
+            local hash=$(git rev-parse --short HEAD 2> /dev/null)
+            
+            local remote_status=""
+            local upstream=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+            
+            if [[ -n "$upstream" ]]; then
+                local counts=$(git rev-list --left-right --count HEAD...@{u} 2>/dev/null)
+                local ahead=$(echo $counts | cut -f1)
+                local behind=$(echo $counts | cut -f2)
+
+                if [[ "$ahead" -gt 0 ]]; then remote_status="${remote_status} ⬆ ${ahead} Need push"; fi
+                if [[ "$behind" -gt 0 ]]; then remote_status="${remote_status} ⬇ ${behind} Need pull"; fi
+                
+                if [[ "$ahead" -eq 0 && "$behind" -eq 0 ]]; then remote_status="${remote_status}"; fi
+            else
+                # git config --global push.autoSetupRemote true
+                remote_status=" ☁⚡ No Upstream - git branch --set-upstream-to=origin/<branch>"
+            fi
+
+            echo "├───${branch}(${hash})${remote_status}\n╰"
+        else
+            echo "╰"
+        fi
     }
-    
-    # Skull emoji for root terminal
-    #[ "$EUID" -eq 0 ] && prompt_symbol=💀
+
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            #PROMPT=$'%F{%(#.blue.green)}┌───${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$' %m%b%F{%(#.blue.green)}) $separator_symbol [%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
-			PROMPT=$'%F{%(#.blue.magenta)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.cyan.cyan)}%n'$prompt_symbol$'%m%b%F{%(#.blue.magenta)})🛸'
-			PROMPT+=$' [%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.cyan)}]'
-			PROMPT+=$' 📁 $(folders_count) 📄 $(files_count) 🔗 $(symlinks_count) $(git_branch)\n'
-			PROMPT+=$'└─%B%(#.%F{red}#.%F{magenta}$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+            PROMPT=$'%F{%(#.blue.red)}╭⎼${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.cyan)}%n'$prompt_symbol$'%m%b%F{%(#.blue.red)}) ⿴'
+            PROMPT+=$' [%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.red)}]'
+            PROMPT+=$' 📁 $(folders_count) 📄 $(files_count) 🔗 $(symlinks_count)\n'
+            PROMPT+='$(git_prompt_line)'
+            PROMPT+=$'⎼⎼⎼⎼⎼⎼%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
             ;;
         oneline)
             PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.blue)}%n@%m%b%F{reset}:%B%F{%(#.blue.green)}%~%b%F{reset}%(#.#.$) '
