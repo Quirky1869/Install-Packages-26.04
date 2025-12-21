@@ -448,3 +448,9 @@
   Output = ""
   Tag = ["git"]
   command = "git config --global core.editor <\"micro\">"
+
+[[Snippets]]
+  Description = "git, permet de suivre une branche sur GitHub"
+  Output = ""
+  Tag = ["git"]
+  command = "git branch --set-upstream-to=origin/<branch>"
