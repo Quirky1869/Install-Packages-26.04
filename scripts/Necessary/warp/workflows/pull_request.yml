@@ -1,0 +1,28 @@
+---
+name: Create pull request
+command: "gh pr create --base {{argument_1}} --title '{{argument_2}}' --body '{{argument_3}}'"
+description: create pull request with gh cli
+arguments:
+  - name: argument_1
+    arg_type: Text
+    description: branch to merge
+    default_value: dev
+  - name: argument_2
+    arg_type: Text
+    description: title to pr
+    default_value: fix(bug-exclusions) ':' fix exclusions
+  - name: argument_3
+    arg_type: Text
+    description: first commentary
+    default_value: Corrections of exclusions into scanner.go
+tags:
+  - git
+  - commit
+  - push
+  - pr
+  - gh
+  - cli
+source_url: ~
+author: Quirky
+author_url: https://github.com/Quirky1869
+shells: []
