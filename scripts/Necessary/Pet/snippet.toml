@@ -454,3 +454,33 @@
   Output = ""
   Tag = ["git"]
   command = "git branch --set-upstream-to=origin/<branch>"
+
+[[Snippets]]
+  Description = "dirb, permet d'enumerer les dossiers d un site web"
+  Output = ""
+  Tag = ["dirb"]
+  command = "dirb <http://192.168.1.1>"
+
+[[Snippets]]
+  Description = "dirb, permet de specifier une wordlist"
+  Output = ""
+  Tag = ["dirb"]
+  command = "dirb <http://192.168.1.1> </usr/share/wordlists/dirb/big.txt>"
+
+[[Snippets]]
+  Description = "dirb, chercher des extentions particuliere"
+  Output = ""
+  Tag = ["dirb"]
+  command = "dirb <http://192.168.1.1> -X <.php,.txt,.html>"
+
+[[Snippets]]
+  Description = "nmap, commande jules pour scan"
+  Output = ""
+  Tag = ["nmap"]
+  command = "nmap -sC -sV -A -p- <ip-cible>"
+
+[[Snippets]]
+  Description = "gobuster, permet de lister les dossiers d'un site web"
+  Output = ""
+  Tag = ["gobuster"]
+  command = "gobuster dir -u <http://IP> -w </usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt> <-x php,txt,html (extentions)>"
