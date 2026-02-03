@@ -484,3 +484,9 @@
   Output = ""
   Tag = ["gobuster"]
   command = "gobuster dir -u <http://IP> -w </usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt> <-x php,txt,html (extentions)>"
+
+  [[Snippets]]
+  Description = "xfreerdp, mapper un partage reseau lors de la prise en main"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp3 -u:<identifiant> -p:<mdp> -v:<IP> /drive:<share - dossier a distance>,<./ - dossier local>"
