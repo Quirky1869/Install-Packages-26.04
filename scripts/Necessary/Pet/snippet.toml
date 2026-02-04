@@ -485,8 +485,20 @@
   Tag = ["gobuster"]
   command = "gobuster dir -u <http://IP> -w </usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt> <-x php,txt,html (extentions)>"
 
-  [[Snippets]]
+[[Snippets]]
   Description = "xfreerdp, mapper un partage reseau lors de la prise en main"
   Output = ""
   Tag = ["xfreerdp"]
   command = "xfreerdp3 -u:<identifiant> -p:<mdp> -v:<IP> /drive:<share - dossier a distance>,<./ - dossier local>"
+
+[[Snippets]]
+  Description = "xfreerdp, commande complete, permet de prendre la main avec clipboard, resolution dynamique, keyboard en fr, drive en option"
+  Output = ""
+  Tag = ["xfreerdp"]
+  command = "xfreerdp3 /u:<USER> /p:<PASSWORD> /v:<IP> /cert:ignore /dynamic-resolution /kbd:layout:0x0000040c /scale-desktop:150 +clipboard </drive:share,./>"
+
+[[Snippets]]
+  Description = "hashcat, permet de dehasher un hash avec une regle -r qui rajoute des possibilites a rockyou.txt"
+  Output = ""
+  Tag = ["hashcat"]
+  command = "hashcat -m <13400> <fichier.hash> </usr/share/wordlists/rockyou.txt> -r </usr/share/hashcat/rules/rockyou-30000.rule> --force"
