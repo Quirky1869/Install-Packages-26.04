@@ -502,3 +502,15 @@
   Output = ""
   Tag = ["hashcat"]
   command = "hashcat -m <13400> <fichier.hash> </usr/share/wordlists/rockyou.txt> -r </usr/share/hashcat/rules/rockyou-30000.rule> --force"
+
+[[Snippets]]
+  Description = "python, permet de creer un environnement virtuel python"
+  Output = ""
+  Tag = ["python"]
+  command = "python -m venv <nom-du-dossier-venv>"
+
+[[Snippets]]
+  Description = "source, lancer python venv sur Garuda"
+  Output = ""
+  Tag = ["source", "venv"]
+  command = "source <nom-du-dossier-venv>/bin/activate.fish"
